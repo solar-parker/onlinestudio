@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: "Inconsolata", monospace;
+    font-style: regular;
+    src: local(""), url("https://github.com/solar-parker/onlinestudio/blob/main/Fonts/Inconsolata-Regular.ttf");
+}
+
 body {
     font-family: "Inconsolata", monospace;
     font-weight: 300;
