@@ -6,6 +6,7 @@
 @font-face {
     font-family: "Inconsolata", monospace;
     font-style: regular;
+    font-weight: regular;
     src: local(""), url("https://github.com/solar-parker/onlinestudio/blob/main/Fonts/Inconsolata-Regular.ttf");
 }
 
