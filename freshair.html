@@ -3,6 +3,7 @@
   <head>
     <title>portfolio</title>
   </head>
+  backgroundColor: black
   <body>
     <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/685216014?h=a265dd038e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Fresh Air"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script></body>
   </body>
@@ -14,14 +15,13 @@
 <script type="text/javascript">
     // <![CDATA[
     var colours=new Array("#a6f", "#60f", "#60f", "#a6f", "#ccc"); // colours for top, right, bottom and left borders and background of bubbles
-    var bubbles=66; // maximum number of bubbles on screen
+    var bubbles=1000; // maximum number of bubbles on screen
     var over_or_under="over"; // set to "over" for bubbles to always be on top, or "under" to allow them to float behind other objects
     
     /****************************
     * JavaScript Bubble Cursor  *
     *(c)2010-13 mf2fm web-design*
     *  http://www.mf2fm.com/rv  *
-    * DON'T EDIT BELOW THIS BOX *
     ****************************/
     var x=ox=400;
     var y=oy=300;
@@ -48,7 +48,7 @@
     function buble() { if (document.getElementById) {
       var i, rats, div;
       for (i=0; i<bubbles; i++) {
-        rats=createDiv("3px", "3px");
+        rats=createDiv("5px", "5px");
         rats.style.visibility="hidden";
         rats.style.zIndex=(over_or_under=="over")?"1001":"0";
     
@@ -98,8 +98,8 @@
         for (c=0; c<bubbles; c++) if (!bubby[c]) {
           bubb[c].left=(bubbx[c]=x)+"px";
           bubb[c].top=(bubby[c]=y-3)+"px";
-          bubb[c].width="3px";
-          bubb[c].height="3px"
+          bubb[c].width="10px";
+          bubb[c].height="10px"
           bubb[c].visibility="visible";
           bubbs[c]=3;
           break;
