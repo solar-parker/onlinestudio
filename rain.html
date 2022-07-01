@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+  
+    <title>Rain Effect</title>
+  
+    <style>
+        /* Adding css to the body */
+          
+        body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        /* setting Image height*/
+          
+        img {
+            height: 100%;
+        }
+    </style>
+</head>
+  
+<body onload="render();">
+    <img src="" alt="" id="back">
+    <script>
+  
+        // Creating a function when our document loads 
+        function render() {
+  
+            var image = document.getElementById('back');
+            image.onload = function() {
+  
+                // Initiating a object of rainyday library
+                var engine = new RainyDay({
+                    image: this
+                });
+  
+                // Now rendering them on the screen 
+                // first element - size of drops,
+                // second element - size of effect drops produced
+                // third element - Quantity of drops
+                engine.rain([
+                    [10, 5, 10]
+                ], 100);
+            };
+        }
+    </script>
+  
+    <!-- Linking rainyday.js library file -->
+    <script src="src/rainyday.js"></script>
+</body>
+</html>
