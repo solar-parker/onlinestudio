@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+     <head>...</head>
+     <body>
+      <div>
+         <img src="http://i.imgur.com/N7ETzFO.jpg" id="background" crossorigin="anonymous">
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/rainyday.js/0.1.2/rainyday.min.js">
+      </script>
+      <script>
+        function rain() {
+            const image = document.getElementById('background');
+            image.onload = function () {
+                var dotEffects  = new RainyDay({
+                    image: this,
+                });
+               dotEffects.rain([
+                    [3, 2, 2]
+                ], 100);
+            };
+        
+            image.crossOrigin = 'anonymous';
+            image.src = 'images/IMG_3418.JPG';
+        
+        }
+        rain();
+      </script>
+     </body>
