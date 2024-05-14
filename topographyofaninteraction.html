@@ -12,24 +12,25 @@
       height: 100%;
       overflow: hidden;
     }
-    iframe {
+    .pdf-container {
       width: 100%;
       height: 100%;
-      border: none;
     }
-
-    @media screen and (max-width: 768px) {
-      iframe {
-        width: 100vw;
-        height: 100vh;
-      }
+    object {
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
-  <iframe src="topography interaction.pdf" frameborder="0"></iframe>
+  <div class="pdf-container">
+    <object data="topography interaction.pdf" type="application/pdf">
+      <p>PDF cannot be displayed</p>
+    </object>
+  </div>
 </body>
 </html>
+
 
 
 
