@@ -1,54 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>maria orciuoli's online studio</title>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>maria orciuoli</title>
     <style>
-      body {
-         /* background-color: #939a83; */
-         background-color: #FFFFFF; 
-    }
-    .ne {
-        color: rgb(54, 52, 52);
-    }
+        /* Reset default margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
 
-    .info-link {
-        /* padding: 6px;
-        background-color: #bec046; */
-        text-decoration: none;
-        border-bottom: 1px solid red;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        /* color: #5d9ed4; */
-        color: #0e0d0d;
-    }
-    p.ex1 {
-      max-width: width 65ch;
-    }
-    
-    p.intro {
-        margin: 0;
-
-    }
-  </style>
+        body {
+            background: url('mao_back.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        /* Bottom-left image styling */
+        .bottom-left-image {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
-</br>
-</br>
 <body>
-  <header style="margin-left: 20px; margin-bottom: 30px;">
-    
-    <h1 style="color: rgb(19, 14, 14); font-weight: 300; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
-     
-       <a class="info-link" href="about.html">about</a>
-        /
-       <!-- <a class="info-link" href="CV_MariaOrciuoli.pdf" target="_blank">cv</a>-->
-       <!--/-->
-        <!-- <a class="info-link" href="mariaorciuoli_portfolio.pdf" target="_blank">portfolio</a>-->
-         <!--/-->
-        <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-    </header>
-
+    <!-- Bottom-left image -->
+    <img src="mo_sign.png" alt="Signature" class="bottom-left-image">
 </body>
 </html>
-
