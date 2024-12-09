@@ -59,33 +59,63 @@
 
         // Drawing state
         let isDrawing = false;
+        let isClick = true; // Detect if it's a click (no movement)
 
-        // Event listeners for mouse actions
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mousedown', clearCanvas);
-
-        // Draw continuously as the cursor moves
-        function draw(e) {
-            if (!isDrawing) {
-                ctx.beginPath(); // Start a new path
-                ctx.moveTo(e.clientX, e.clientY); // Move to the mouse position
-                isDrawing = true;
-            } else {
-                ctx.lineWidth = 5; // Set line thickness
-                ctx.strokeStyle = 'red'; // Set line color
-                ctx.lineCap = 'round'; // Make line ends rounded
-                ctx.lineTo(e.clientX, e.clientY); // Draw a line to the mouse position
-                ctx.stroke(); // Render the line
-            }
+        // Start drawing when the cursor or finger moves onto the canvas
+        function startDrawing(x, y) {
+            ctx.beginPath(); // Start a new path
+            ctx.moveTo(x, y); // Move to the touch/mouse position
+            isDrawing = true;
+            isClick = true; // Assume it's a click until movement is detected
         }
 
-        // Clear the canvas when the mouse is pressed
+        // Draw continuously as the cursor or finger moves
+        function draw(x, y) {
+            if (!isDrawing) return; // Only draw if drawing is active
+            ctx.lineWidth = 5; // Set line thickness
+            ctx.strokeStyle = 'red'; // Set line color
+            ctx.lineCap = 'round'; // Make line ends rounded
+            ctx.lineTo(x, y); // Draw a line to the touch/mouse position
+            ctx.stroke(); // Render the line
+            isClick = false; // Mark it as not a click if there's movement
+        }
+
+        // Stop drawing and reset state
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.closePath(); // End the current path
+        }
+
+        // Clear the canvas
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
-            isDrawing = false; // Reset the drawing state
         }
+
+        // Add mouse event listeners
+        canvas.addEventListener('mousedown', (e) => startDrawing(e.clientX, e.clientY));
+        canvas.addEventListener('mousemove', (e) => draw(e.clientX, e.clientY));
+        canvas.addEventListener('mouseup', () => {
+            if (isClick) clearCanvas(); // Clear canvas if it's a click
+            stopDrawing();
+        });
+
+        // Add touch event listeners
+        canvas.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            startDrawing(touch.clientX, touch.clientY);
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            draw(touch.clientX, touch.clientY);
+            e.preventDefault(); // Prevent scrolling
+        });
+        canvas.addEventListener('touchend', () => {
+            if (isClick) clearCanvas(); // Clear canvas if it's a tap
+            stopDrawing();
+        });
     </script>
 </body>
 </html>
+
 
 
