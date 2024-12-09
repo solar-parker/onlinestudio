@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>maria orciuoli</title>
+    <title>Maria Orciuoli</title>
+
+    <!-- Preload the background image -->
+    <link rel="preload" as="image" href="mao_back.webp">
+
     <style>
         /* Reset default margin and padding */
         body, html {
@@ -12,8 +16,9 @@
             height: 100%;
         }
 
+        /* Apply the background image */
         body {
-            background: url('mao_back.png') no-repeat center center fixed;
+            background: url('mao_back.webp') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             align-items: center;
@@ -49,6 +54,13 @@
     <img src="mo_sign.png" alt="Signature" class="bottom-left-image">
 
     <script>
+        // Preload the high-resolution background image
+        const preloadImage = new Image();
+        preloadImage.src = 'mao_back.webp';
+        preloadImage.onload = () => {
+            document.body.style.backgroundImage = `url('mao_back.webp')`;
+        };
+
         // Get the canvas and context
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
@@ -128,6 +140,7 @@
     </script>
 </body>
 </html>
+
 
 
 
