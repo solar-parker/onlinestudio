@@ -115,7 +115,10 @@
                 if (!isDrawing) startDrawing(e.clientX, e.clientY);
                 draw(e.clientX, e.clientY);
             });
-            canvas.addEventListener('mousedown', () => (isDrawing = true));
+            canvas.addEventListener('mousedown', (e) => {
+                startDrawing(e.clientX, e.clientY);
+                isClick = true; // Reset click state on mousedown
+            });
             canvas.addEventListener('mouseup', () => {
                 if (isClick) clearCanvas(); // Clear canvas if it's a click
                 stopDrawing();
@@ -125,6 +128,7 @@
     </script>
 </body>
 </html>
+
 
 
 
