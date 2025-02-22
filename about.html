@@ -40,6 +40,19 @@
     text-decoration: underline; /* Underline the link */
     text-decoration-color: red; /* Set underline color to red */
   }
+  /* Image container with responsive styles */
+  .image-container img {
+    max-width: 73ch;   /* Set a max width for the image */
+    width: 100%;       /* Make the image responsive */
+    height: auto;      /* Maintain aspect ratio */
+  }
+
+  /* Add padding to the image on smaller screens */
+  @media (max-width: 600px) {
+    .image-container img {
+      padding-right: 10px; /* Add right padding on mobile */
+    }
+  }
   </style>
 </head>
 <body>
