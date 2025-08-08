@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maria Orciuoli</title>
 
     <!-- Preload the background image -->
-    <link rel="preload" as="image" href="mao_back.webp">
+    <link rel="preload" as="image" href="mao_back.webp" />
 
     <style>
         /* Reset default margin and padding */
@@ -14,16 +14,51 @@
             margin: 0;
             padding: 0;
             height: 100%;
-        }
-
-        /* Apply the background image */
-        body {
+            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
             background: url('mao_back.webp') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: Helvetica, Arial, sans-serif;
+            color: rgb(54, 52, 52); /* From .ne */
+        }
+
+        /* Header styling */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            margin-bottom: 30px;
+            z-index: 10; /* So it stays above the canvas */
+        }
+
+        header h1 {
+            color: transparent;
+            font-weight: 300;
+            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+
+        /* Menu links styling from Page 1 */
+        .info-link {
+            text-decoration: none;
+            border-bottom: 1px solid red;
+            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+            color: #0e0d0d;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .info-link:hover {
+            color: red;
+        }
+
+        /* Custom link styling for <a> */
+        a {
+            color: black;
+            text-decoration: underline;
+            text-decoration-color: red;
         }
 
         /* Bottom-left image styling */
@@ -34,6 +69,7 @@
             max-width: 150px;
             width: 100%;
             height: auto;
+            z-index: 10;
         }
 
         /* Canvas styling */
@@ -43,16 +79,24 @@
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>maria orciuoli</h1>
+        <a class="info-link" href="home.html">home</a> /
+        <a class="info-link" href="about.html">about</a> /
+        <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+    </header>
+
     <!-- Canvas for drawing -->
     <canvas id="drawingCanvas"></canvas>
 
     <!-- Bottom-left image -->
     <a href="home.html">
-        <img src="mo_sign.png" alt="Signature" class="bottom-left-image">
+        <img src="mo_sign.png" alt="Signature" class="bottom-left-image" />
     </a>
 
     <script>
