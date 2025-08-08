@@ -22,14 +22,12 @@
       background: url('mao_back.webp') no-repeat center center fixed;
       background-size: cover;
       color: rgb(54, 52, 52);
-      /* Use padding top to give space from top if needed */
-      padding-top: 20px;
     }
 
+    /* Match Page 2 header exactly */
     header {
       margin-left: 20px;
       margin-bottom: 30px;
-      /* No fixed positioning — natural flow */
     }
 
     header h1 {
@@ -37,8 +35,7 @@
       font-weight: 300;
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       font-size: 36px;
-      margin-bottom: 10px;
-      line-height: 1.2;
+      margin: 0;
     }
 
     .info-link {
@@ -46,29 +43,13 @@
       border-bottom: 1px solid red;
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       color: #0e0d0d;
-      margin-right: 8px;
-      font-size: 16px;
     }
 
-    .info-link:hover {
-      color: red;
-    }
-
+    /* Custom link styling (as in Page 2) */
     a {
       color: black;
       text-decoration: underline;
       text-decoration-color: red;
-    }
-
-    p {
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      max-width: 65ch;
-      line-height: 1.4;
-      margin-top: 20px;
-    }
-
-    p.intro {
-      margin: 0;
     }
 
     /* Canvas behind content */
@@ -97,20 +78,11 @@
 
   <header>
     <h1>maria orciuoli</h1>
-    <a class="info-link" href="home.html">home</a> /
-    <a class="info-link" href="about.html">about</a> /
+    <a class="info-link" href="home.html">home</a>
+    /
+    <a class="info-link" href="about.html">about</a>
+    /
     <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-
-    <br><br><br>
-
-    <p>
-      Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
-      You eat what’s offered, you imitate the motion, like birds learning the sky. 
-      Being yourself might be a kind of possession, an exit wound, a disappearing act. 
-      You enter with great force to succeed in forgetting yourself. 
-      Freedom is perhaps the same—a frame that allows any variation. 
-      The shape left behind. The room you move through without breaking.
-    </p>
   </header>
 
   <canvas id="drawingCanvas"></canvas>
@@ -127,7 +99,7 @@
       document.body.style.backgroundImage = `url('mao_back.webp')`;
     };
 
-    // Canvas drawing code (unchanged)
+    // Canvas drawing code
     const canvas = document.getElementById('drawingCanvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
