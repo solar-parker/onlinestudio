@@ -1,180 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Maria Orciuoli</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maria Orciuoli</title>
 
-<!-- Preload the background image -->
-<link rel="preload" as="image" href="mao_back.webp" />
+    <!-- Preload the background image -->
+    <link rel="preload" as="image" href="mao_back.webp" />
 
-<style>
-  /* Base body styles */
-  body {
-    background-color: #e0cfc5; /* fallback bg color */
-    background: url('mao_back.webp') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-    color: rgb(54, 52, 52); /* for .ne if needed */
-    overflow: hidden;
-  }
+    <style>
+        /* Reset all margins and paddings */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  /* Header styling as per your exact code */
-  header {
-    margin-left: 20px;
-    margin-bottom: 30px;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 10; /* always on top */
-  }
+        body, html {
+            height: 100%;
+            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+            background: url('mao_back.webp') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(54, 52, 52); /* From .ne */
+        }
 
-  header h1 {
-    color: transparent;
-    font-weight: 300;
-    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-    font-size: 36px;
-    margin: 0 0 10px 0;
-  }
+        /* Header styling */
+        header {
+            position: fixed;
+            top: 20px; /* tweak this to move header vertically */
+            left: 20px;
+            margin-bottom: 30px;
+            z-index: 10; /* So it stays above the canvas */
+            padding: 0;
+            margin-top: 0;
+        }
 
-  .info-link {
-    text-decoration: none;
-    border-bottom: 1px solid red;
-    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-    color: #0e0d0d;
-    margin-right: 8px;
-    font-size: 16px;
-  }
+        header h1 {
+            color: transparent;
+            font-weight: 300;
+            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+            font-size: 36px;
+            margin: 0; /* reset all margins */
+            padding: 0;
+            line-height: 1.2; /* control vertical spacing */
+        }
 
-  .info-link:hover {
-    color: red;
-  }
+        /* Menu links styling */
+        .info-link {
+            text-decoration: none;
+            border-bottom: 1px solid red;
+            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+            color: #0e0d0d;
+            margin-right: 8px;
+            font-size: 16px;
+        }
 
-  a {
-    color: black;
-    text-decoration: underline;
-    text-decoration-color: red;
-  }
+        .info-link:hover {
+            color: red;
+        }
 
-  /* Bottom-left image styling */
-  .bottom-left-image {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-    z-index: 10;
-  }
+        /* Custom link styling for all links */
+        a {
+            color: black;
+            text-decoration: underline;
+            text-decoration-color: red;
+        }
 
-  /* Canvas styling */
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-</style>
+        /* Bottom-left image styling */
+        .bottom-left-image {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            z-index: 10;
+        }
+
+        /* Canvas styling */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>maria orciuoli</h1>
-    <a class="info-link" href="home.html">home</a> /
-    <a class="info-link" href="about.html">about</a> /
-    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-  </header>
+    <header>
+        <h1>maria orciuoli</h1>
+        <a class="info-link" href="home.html">home</a> /
+        <a class="info-link" href="about.html">about</a> /
+        <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+    </header>
 
-  <!-- Canvas for drawing -->
-  <canvas id="drawingCanvas"></canvas>
+    <!-- Canvas for drawing -->
+    <canvas id="drawingCanvas"></canvas>
 
-  <!-- Bottom-left image -->
-  <a href="home.html">
-    <img src="mo_sign.png" alt="Signature" class="bottom-left-image" />
-  </a>
+    <!-- Bottom-left image -->
+    <a href="home.html">
+        <img src="mo_sign.png" alt="Signature" class="bottom-left-image" />
+    </a>
 
-  <script>
-    // Preload the high-resolution background image
-    const preloadImage = new Image();
-    preloadImage.src = 'mao_back.webp';
-    preloadImage.onload = () => {
-      document.body.style.backgroundImage = `url('mao_back.webp')`;
-    };
+    <script>
+        // Preload the high-resolution background image
+        const preloadImage = new Image();
+        preloadImage.src = 'mao_back.webp';
+        preloadImage.onload = () => {
+            document.body.style.backgroundImage = `url('mao_back.webp')`;
+        };
 
-    // Canvas setup
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
+        // Get the canvas and context
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+        // Set canvas size to match the window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+        // Detect if the device is mobile
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-    let isDrawing = false;
-    let isClick = true;
+        // Drawing state
+        let isDrawing = false;
+        let isClick = true; // Detect if it's a click (no movement)
 
-    function startDrawing(x, y) {
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      isDrawing = true;
-      isClick = true;
-    }
+        // Start drawing
+        function startDrawing(x, y) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            isDrawing = true;
+            isClick = true;
+        }
 
-    function draw(x, y) {
-      if (!isDrawing) return;
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = 'red';
-      ctx.lineCap = 'round';
-      ctx.lineTo(x, y);
-      ctx.stroke();
-      isClick = false;
-    }
+        // Draw continuously
+        function draw(x, y) {
+            if (!isDrawing) return;
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = 'red';
+            ctx.lineCap = 'round';
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            isClick = false;
+        }
 
-    function stopDrawing() {
-      isDrawing = false;
-      ctx.closePath();
-    }
+        // Stop drawing
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.closePath();
+        }
 
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
+        // Clear the canvas
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
 
-    if (isMobile) {
-      canvas.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        startDrawing(touch.clientX, touch.clientY);
-      });
-      canvas.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        draw(touch.clientX, touch.clientY);
-        e.preventDefault();
-      });
-      canvas.addEventListener('touchend', () => {
-        if (isClick) clearCanvas();
-        stopDrawing();
-      });
-    } else {
-      canvas.addEventListener('mousemove', (e) => {
-        if (!isDrawing) startDrawing(e.clientX, e.clientY);
-        draw(e.clientX, e.clientY);
-      });
-      canvas.addEventListener('mousedown', (e) => {
-        startDrawing(e.clientX, e.clientY);
-        isClick = true;
-      });
-      canvas.addEventListener('mouseup', () => {
-        if (isClick) clearCanvas();
-        stopDrawing();
-      });
-      canvas.addEventListener('mouseout', stopDrawing);
-    }
-  </script>
+        if (isMobile) {
+            canvas.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                startDrawing(touch.clientX, touch.clientY);
+            });
+            canvas.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                draw(touch.clientX, touch.clientY);
+                e.preventDefault();
+            });
+            canvas.addEventListener('touchend', () => {
+                if (isClick) clearCanvas();
+                stopDrawing();
+            });
+        } else {
+            canvas.addEventListener('mousemove', (e) => {
+                if (!isDrawing) startDrawing(e.clientX, e.clientY);
+                draw(e.clientX, e.clientY);
+            });
+            canvas.addEventListener('mousedown', (e) => {
+                startDrawing(e.clientX, e.clientY);
+                isClick = true;
+            });
+            canvas.addEventListener('mouseup', () => {
+                if (isClick) clearCanvas();
+                stopDrawing();
+            });
+            canvas.addEventListener('mouseout', stopDrawing);
+        }
+    </script>
 </body>
 </html>
+
 
 
 
