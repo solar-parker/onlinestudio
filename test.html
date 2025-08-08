@@ -39,51 +39,41 @@
     }
 
     .info-link {
-      text-decoration: none;
-      border-bottom: 1px solid red;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      color: #0e0d0d;
+        /*                 padding: 6px;
+        background-color: #bec046; */
+        text-decoration: none;
+        border-bottom: 1px solid red;
+        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+        color: #0e0d0d;
+    }
+    
+    p {
+    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+    max-width: 65ch;
+    line-height: 1.4;
     }
 
-    /* Custom link styling (as in Page 2) */
-    a {
-      color: black;
-      text-decoration: underline;
-      text-decoration-color: red;
+    p.intro {
+        margin: 0px;
     }
-
-    /* Canvas behind content */
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-    }
-
-    /* Bottom-left image styling */
-    .bottom-left-image {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      max-width: 150px;
-      width: 100%;
-      height: auto;
-      z-index: 10;
-    }
+    /* Custom link styling */
+  a {
+    color: black; /* Text color */
+    text-decoration: underline; /* Underline the link */
+    text-decoration-color: red; /* Set underline color to red */
+  }
   </style>
 </head>
-<body>
 
-  <header>
-    <h1>maria orciuoli</h1>
-    <a class="info-link" href="home.html">home</a>
-    /
-    <a class="info-link" href="about.html">about</a>
-    /
-    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-  </header>
+<body>
+  <header style="margin-left: 20px; margin-bottom: 30px;">
+    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
+      <a class="info-link" href="home.html">home</a>
+      /
+      <a class="info-link" href="about.html">about</a>
+      /
+      <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+    </header>
 
   <canvas id="drawingCanvas"></canvas>
 
