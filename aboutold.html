@@ -13,6 +13,7 @@
     background: black;
     overflow: hidden;
   }
+
   .video-container {
     position: fixed;
     top: 0;
@@ -21,16 +22,18 @@
     height: 100%;
     overflow: hidden;
   }
+
   .video-container iframe {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 100%;       /* scale to full viewport height */
-    width: auto;        /* keep aspect ratio */
-    min-width: 100%;    /* ensures full width on wide screens */
+    width: auto;        /* preserve aspect ratio */
+    min-width: 100%;    /* fill wide screens */
   }
-  .play-overlay {
+
+  #playButton {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -42,7 +45,7 @@
     border: none;
     cursor: pointer;
     z-index: 1000;
-    display: none;
+    display: none; /* only show if autoplay blocked */
   }
 </style>
 </head>
@@ -50,7 +53,8 @@
 
 <div class="video-container">
   <iframe 
-    src="https://player.vimeo.com/video/1110593412?h=d552da2336&autoplay=1&muted=0&loop=1&background=1" 
+    id="vimeoPlayer"
+    src="https://player.vimeo.com/video/1110593412?h=d552da2336&autoplay=1&loop=1&background=1" 
     frameborder="0" 
     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
     referrerpolicy="strict-origin-when-cross-origin" 
@@ -58,26 +62,28 @@
   </iframe>
 </div>
 
-<button class="play-overlay" id="playButton">Play with Sound</button>
+<button id="playButton">Play with Sound</button>
 
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
-  const iframe = document.querySelector('iframe');
+  const iframe = document.getElementById('vimeoPlayer');
   const player = new Vimeo.Player(iframe);
   const playButton = document.getElementById('playButton');
 
-  // Attempt autoplay with sound
+  // Start autoplay muted (required by browsers)
+  player.setVolume(0);
   player.play().catch(() => {
+    // Autoplay blocked → show play button
     playButton.style.display = 'block';
   });
 
+  // On button click → unmute and play
   playButton.addEventListener('click', () => {
-    player.play();
+    player.setVolume(1); // unmute
+    player.play();        // ensure it plays
     playButton.style.display = 'none';
   });
 </script>
 
 </body>
 </html>
-
-
