@@ -28,9 +28,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 100%;       /* scale to full viewport height */
-    width: auto;        /* preserve aspect ratio */
-    min-width: 100%;    /* fill wide screens */
+    height: 100%;
+    width: auto;
+    min-width: 100%;
   }
 
   #playButton {
@@ -45,7 +45,7 @@
     border: none;
     cursor: pointer;
     z-index: 1000;
-    display: none; /* only show if autoplay blocked */
+    display: none;
   }
 </style>
 </head>
@@ -54,9 +54,9 @@
 <div class="video-container">
   <iframe 
     id="vimeoPlayer"
-    src="https://player.vimeo.com/video/1110593412?h=d552da2336&autoplay=1&loop=1&background=1" 
+    src="https://player.vimeo.com/video/1110593412?h=d552da2336&autoplay=1&loop=1" 
     frameborder="0" 
-    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+    allow="autoplay; fullscreen; picture-in-picture" 
     referrerpolicy="strict-origin-when-cross-origin" 
     title="Raindrop Price Index_2023">
   </iframe>
@@ -70,20 +70,20 @@
   const player = new Vimeo.Player(iframe);
   const playButton = document.getElementById('playButton');
 
-  // Start autoplay muted (required by browsers)
+  // Start muted to allow autoplay
   player.setVolume(0);
   player.play().catch(() => {
-    // Autoplay blocked → show play button
     playButton.style.display = 'block';
   });
 
-  // On button click → unmute and play
+  // User click → unmute
   playButton.addEventListener('click', () => {
-    player.setVolume(1); // unmute
-    player.play();        // ensure it plays
+    player.setVolume(1);
+    player.play();
     playButton.style.display = 'none';
   });
 </script>
 
 </body>
 </html>
+
