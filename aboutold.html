@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raindrop Price Index</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background: black;
-      overflow: hidden;
-    }
-    .video-container {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vh; /* Use viewport height for width to maintain 9:16 */
-      height: 100%;
-      max-width: 56.25vh; /* 9:16 ratio */
-    }
-    .video-container iframe {
-      width: 100%;
-      height: 100%;
-    }
-    .play-overlay {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 1em 2em;
-      font-size: 1.2em;
-      color: white;
-      background: rgba(0,0,0,0.7);
-      border: none;
-      cursor: pointer;
-      z-index: 1000;
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raindrop Price Index</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+  }
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;       /* scale to full viewport height */
+    width: auto;        /* keep aspect ratio */
+    min-width: 100%;    /* ensures full width on wide screens */
+  }
+  .play-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em 2em;
+    font-size: 1.2em;
+    color: white;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+  }
+</style>
 </head>
 <body>
 
@@ -62,9 +66,8 @@
   const player = new Vimeo.Player(iframe);
   const playButton = document.getElementById('playButton');
 
-  // Try to autoplay with sound
+  // Attempt autoplay with sound
   player.play().catch(() => {
-    // If autoplay blocked, show overlay button
     playButton.style.display = 'block';
   });
 
@@ -76,4 +79,5 @@
 
 </body>
 </html>
+
 
