@@ -32,22 +32,14 @@
       /* Wavy text effect */
       .wavy-text span {
         display: inline-block;
-        animation: wave 2s infinite ease-in-out;
-      }
-
-      .wavy-text span:nth-child(odd) {
-        animation-delay: 0.1s;
-      }
-
-      .wavy-text span:nth-child(even) {
-        animation-delay: 0.3s;
+        animation: wave 6s infinite ease-in-out; /* slower duration */
       }
 
       @keyframes wave {
         0%, 100% { transform: translateY(0); }
-        25% { transform: translateY(-4px); }
+        25% { transform: translateY(-6px); }
         50% { transform: translateY(0); }
-        75% { transform: translateY(4px); }
+        75% { transform: translateY(6px); }
       }
      </style>
 </head>
@@ -77,16 +69,17 @@
   </header>
 
   <script>
-    // Wrap every character of the paragraph in spans
+    // Wrap every character of the paragraph in spans and stagger delays
     const poem = document.getElementById("poem");
     const text = poem.innerText;
     poem.innerHTML = text
       .split("")
-      .map(char => {
+      .map((char, i) => {
         if (char === " ") return " "; // keep spaces
-        return `<span>${char}</span>`;
+        return `<span style="animation-delay:${i * 0.05}s">${char}</span>`;
       })
       .join("");
   </script>
 </body>
 </html>
+
