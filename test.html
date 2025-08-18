@@ -7,12 +7,7 @@
     
      <style>
       body {
-         /* background-color: #939a83; */
          background-color: #e0cfc5; 
-      }
-
-      .ne {
-        color: rgb(54, 52, 52);
       }
 
       .info-link {
@@ -28,11 +23,6 @@
         line-height: 1.4;
       }
 
-      p.intro {
-        margin: 0px;
-      }
-
-      /* Custom link styling */
       a {
         color: black;
         text-decoration: underline;
@@ -40,13 +30,6 @@
       }
 
       /* Wavy text effect */
-      .wavy-text {
-        display: inline-block;
-        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-        max-width: 65ch;
-        line-height: 1.4;
-      }
-
       .wavy-text span {
         display: inline-block;
         animation: wave 2s infinite ease-in-out;
@@ -79,20 +62,31 @@
       <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
          <br><br><br>
 
-         <p class="wavy-text">
-          <!-- each letter wrapped in span for animation -->
-          <span>L</span><span>i</span><span>f</span><span>e</span><span> </span>
-          <span>i</span><span>s</span><span> </span>
-          <span>a</span><span> </span><span>b</span><span>i</span><span>t</span><span> </span>
-          <span>l</span><span>i</span><span>k</span><span>e</span><span> </span>
-          <span>a</span><span> </span><span>d</span><span>i</span><span>n</span><span>i</span><span>n</span><span>g</span><span> </span>
-          <span>t</span><span>a</span><span>b</span><span>l</span><span>e</span><br>
+         <p class="wavy-text" id="poem">
+          Life is a bit like a dining table. 
           You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
           You eat what’s offered, you imitate the motion, like birds learning the sky. 
           Being yourself might be a kind of possession, an exit wound, a disappearing act. 
-          You enter with great force to succeed in forgetting yourself. <br><br>
-          Freedom is perhaps the same, a frame that allows any variation, the shape left behind, the room you move through without breaking.
+          You enter with great force to succeed in forgetting yourself. 
+      
+          Freedom is perhaps the same,
+          a frame that allows any variation,
+          the shape left behind,
+          the room you move through without breaking.
          </p>
   </header>
+
+  <script>
+    // Wrap every character of the paragraph in spans
+    const poem = document.getElementById("poem");
+    const text = poem.innerText;
+    poem.innerHTML = text
+      .split("")
+      .map(char => {
+        if (char === " ") return " "; // keep spaces
+        return `<span>${char}</span>`;
+      })
+      .join("");
+  </script>
 </body>
 </html>
