@@ -1,146 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cursor Distortion Demo</title>
+  <title>Maria Orciuoli</title>
+
+  <!-- Preload the background image -->
+  <link rel="preload" as="image" href="mao_back.webp" />
+
   <style>
-    :root {
-      --cursor-size: 180px;          /* diameter of the distortion area */
-      --blur-amt: 12px;              /* blur strength */
-      --contrast-amt: 1.15;          /* subtle contrast pop */
-      --saturate-amt: 1.1;           /* subtle saturation pop */
-    }
-
-    /* Base page styles (demo only) */
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
+    /* Reset */
+    * {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-      color: #0f172a;
-      background: linear-gradient(135deg,#fafafa,#f1f5f9);
-      overflow-x: hidden;
-      /* Hide the default cursor on pointer devices so our custom one feels native */
-      cursor: none;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    header, main, section {
-      max-width: 1100px; margin: 0 auto; padding: 4rem 1.25rem;
+    body, html {
+      height: 100%;
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+      background: url('mao_back.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: rgb(54, 52, 52);
     }
 
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-    .card {
-      background: white; border-radius: 1.25rem; padding: 1.25rem; box-shadow: 0 8px 24px rgba(2,6,23,.08);
-      border: 1px solid rgba(2,6,23,.06);
+    /* Match Page 2 header exactly */
+    header {
+      margin-left: 20px;
+      margin-bottom: 30px;
     }
 
-    /* === Distortion Cursor === */
-    #distortion-cursor {
-      position: fixed;
-      top: 0; left: 0;
-      width: var(--cursor-size);
-      height: var(--cursor-size);
-      border-radius: 50%;
-      pointer-events: none;          /* don't block clicks */
-      z-index: 9999;                 /* above everything */
-      transform: translate3d(-1000px,-1000px,0); /* start off-screen */
-      transition: transform 60ms linear; /* responsive but smooth */
-
-      /* The magic: distort whatever is BEHIND this circle */
-      backdrop-filter: blur(var(--blur-amt)) contrast(var(--contrast-amt)) saturate(var(--saturate-amt));
-      -webkit-backdrop-filter: blur(var(--blur-amt)) contrast(var(--contrast-amt)) saturate(var(--saturate-amt));
+    header h1 {
+      color: transparent;
+      font-weight: 300;
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+      font-size: 36px;
+      margin: 0;
     }
 
-    /* Add a subtle refraction rim so the effect reads as a lens */
-    #distortion-cursor::after {
-      content: "";
-      position: absolute; inset: 0;
-      border-radius: inherit;
-      border: 1px solid rgba(15, 23, 42, 0.18);
-      box-shadow: inset 0 0 24px rgba(0,0,0,0.08), 0 2px 12px rgba(0,0,0,0.06);
+    .info-link {
+        /*                 padding: 6px;
+        background-color: #bec046; */
+        text-decoration: none;
+        border-bottom: 1px solid red;
+        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+        color: #0e0d0d;
+    }
+    
+    p {
+    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+    max-width: 65ch;
+    line-height: 1.4;
     }
 
-    /* Accessibility: honor reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      #distortion-cursor { transition: none; }
+    p.intro {
+        margin: 0px;
     }
-
-    /* Touch devices: keep the native cursor hidden state sensible */
-    @media (hover: none) and (pointer: coarse) {
-      body { cursor: auto; }
-    }
-
-    /* Optional toggle hint */
-    .hint {
-      position: fixed; bottom: 10px; right: 12px; z-index: 10000;
-      background: rgba(15,23,42,.7); color: #fff; padding: .5rem .75rem; border-radius: .75rem;
-      font-size: 12px; user-select: none;
-    }
+    /* Custom link styling */
+  a {
+    color: black; /* Text color */
+    text-decoration: underline; /* Underline the link */
+    text-decoration-color: red; /* Set underline color to red */
+  }
   </style>
 </head>
+
 <body>
-  <!-- Demo content (replace with your site’s content) -->
-  <header>
-    <h1>Cursor Distortion Effect</h1>
-    <p>Move your pointer around — the circular “lens” distorts the page in real time using <code>backdrop-filter</code>. Drop this snippet into any site; no libraries required.</p>
-  </header>
+  <header style="margin-left: 20px; margin-bottom: 30px;">
+    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
+      <a class="info-link" href="home.html">home</a>
+      /
+      <a class="info-link" href="about.html">about</a>
+      /
+      <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+    </header>
 
-  <main>
-    <section class="cards">
-      <div class="card"><h3>Installation</h3><p>Wrap nothing! This effect overlays the page; it doesn’t require restructuring your DOM.</p></div>
-      <div class="card"><h3>Performance</h3><p>Uses GPU-accelerated backdrop filters. You can tune <code>--cursor-size</code> and <code>--blur-amt</code> for your needs.</p></div>
-      <div class="card"><h3>Accessibility</h3><p>Respects <code>prefers-reduced-motion</code> and includes a keyboard toggle.</p></div>
-      <div class="card"><h3>Compatibility</h3><p>Works in modern browsers (Safari, Chrome, Edge, Firefox with backdrop-filter support). Gracefully degrades where unsupported.</p></div>
-    </section>
-  </main>
+  <canvas id="drawingCanvas"></canvas>
 
-  <!-- The distortion lens -->
-  <div id="distortion-cursor" aria-hidden="true"></div>
-  <div class="hint" id="toggle-hint">Press <kbd>D</kbd> to toggle distortion</div>
+  <a href="home.html">
+    <img src="mo_sign.png" alt="Signature" class="bottom-left-image" />
+  </a>
 
   <script>
-    (function() {
-      const el = document.getElementById('distortion-cursor');
-      const hint = document.getElementById('toggle-hint');
+    // Preload the high-resolution background image
+    const preloadImage = new Image();
+    preloadImage.src = 'mao_back.webp';
+    preloadImage.onload = () => {
+      document.body.style.backgroundImage = `url('mao_back.webp')`;
+    };
 
-      // Feature detect backdrop-filter; if unsupported, hide the effect
-      const supportsBackdrop = CSS.supports('backdrop-filter','blur(1px)') || CSS.supports('-webkit-backdrop-filter','blur(1px)');
-      if (!supportsBackdrop) {
-        el.style.display = 'none';
-        if (hint) hint.textContent = 'Distortion disabled (no backdrop-filter support)';
-        return;
-      }
+    // Canvas drawing code
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-      let enabled = true;
-      const size = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cursor-size')) || 180;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    let isDrawing = false;
+    let isClick = true;
 
-      function move(x, y) {
-        el.style.transform = `translate3d(${x - size / 2}px, ${y - size / 2}px, 0)`;
-      }
+    function startDrawing(x, y) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      isDrawing = true;
+      isClick = true;
+    }
 
-      window.addEventListener('pointermove', (e) => {
-        if (!enabled) return;
-        move(e.clientX, e.clientY);
-      }, { passive: true });
+    function draw(x, y) {
+      if (!isDrawing) return;
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = 'red';
+      ctx.lineCap = 'round';
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      isClick = false;
+    }
 
-      // Keep lens visible on enter; hide when leaving viewport
-      window.addEventListener('pointerenter', (e) => enabled && (el.style.opacity = '1'), { passive: true });
-      window.addEventListener('pointerleave', (e) => (el.style.opacity = '0'), { passive: true });
+    function stopDrawing() {
+      isDrawing = false;
+      ctx.closePath();
+    }
 
-      // Keyboard toggle for accessibility (press "D")
-      window.addEventListener('keydown', (e) => {
-        if (e.key.toLowerCase() === 'd') {
-          enabled = !enabled;
-          el.style.opacity = enabled ? '1' : '0';
-          if (hint) hint.textContent = enabled ? 'Press D to toggle distortion' : 'Distortion off — press D to re‑enable';
-        }
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    if (isMobile) {
+      canvas.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        startDrawing(touch.clientX, touch.clientY);
       });
-
-      // Initial position to center
-      move(window.innerWidth/2, window.innerHeight/2);
-    })();
+      canvas.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        draw(touch.clientX, touch.clientY);
+        e.preventDefault();
+      });
+      canvas.addEventListener('touchend', () => {
+        if (isClick) clearCanvas();
+        stopDrawing();
+      });
+    } else {
+      canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) startDrawing(e.clientX, e.clientY);
+        draw(e.clientX, e.clientY);
+      });
+      canvas.addEventListener('mousedown', (e) => {
+        startDrawing(e.clientX, e.clientY);
+        isClick = true;
+      });
+      canvas.addEventListener('mouseup', () => {
+        if (isClick) clearCanvas();
+        stopDrawing();
+      });
+      canvas.addEventListener('mouseout', stopDrawing);
+    }
   </script>
 </body>
 </html>
