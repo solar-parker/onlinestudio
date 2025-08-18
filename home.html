@@ -9,64 +9,37 @@
       body {
          /* background-color: #939a83; */
          background-color: #e0cfc5; 
-      }
+    }
 
-      .ne {
+    .ne {
         color: rgb(54, 52, 52);
-      }
+    }
 
-      .info-link {
+    .info-link {
+        /*                 padding: 6px;
+        background-color: #bec046; */
         text-decoration: none;
         border-bottom: 1px solid red;
         font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
         color: #0e0d0d;
-      }
+    }
     
-      p {
-        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-        max-width: 65ch;
-        line-height: 1.4;
-      }
+    p {
+    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+    max-width: 65ch;
+    line-height: 1.4;
+    }
 
-      p.intro {
+    p.intro {
         margin: 0px;
-      }
-
-      /* Custom link styling */
-      a {
-        color: black;
-        text-decoration: underline;
-        text-decoration-color: red;
-      }
-
-      /* Wavy text effect */
-      .wavy-text {
-        display: inline-block;
-        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-        max-width: 65ch;
-        line-height: 1.4;
-      }
-
-      .wavy-text span {
-        display: inline-block;
-        animation: wave 2s infinite ease-in-out;
-      }
-
-      .wavy-text span:nth-child(odd) {
-        animation-delay: 0.1s;
-      }
-
-      .wavy-text span:nth-child(even) {
-        animation-delay: 0.3s;
-      }
-
-      @keyframes wave {
-        0%, 100% { transform: translateY(0); }
-        25% { transform: translateY(-4px); }
-        50% { transform: translateY(0); }
-        75% { transform: translateY(4px); }
-      }
-     </style>
+    }
+    /* Custom link styling */
+  a {
+    color: black; /* Text color */
+    text-decoration: underline; /* Underline the link */
+    text-decoration-color: red; /* Set underline color to red */
+  }
+  </style>
 </head>
 
 <body>
@@ -77,22 +50,25 @@
       <a class="info-link" href="about.html">about</a>
       /
       <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-         <br><br><br>
-
-         <p class="wavy-text">
-          <!-- each letter wrapped in span for animation -->
-          <span>L</span><span>i</span><span>f</span><span>e</span><span> </span>
-          <span>i</span><span>s</span><span> </span>
-          <span>a</span><span> </span><span>b</span><span>i</span><span>t</span><span> </span>
-          <span>l</span><span>i</span><span>k</span><span>e</span><span> </span>
-          <span>a</span><span> </span><span>d</span><span>i</span><span>n</span><span>i</span><span>n</span><span>g</span><span> </span>
-          <span>t</span><span>a</span><span>b</span><span>l</span><span>e</span><br>
+       <!-- <a class="info-link" href="CV_MariaOrciuoli.pdf" target="_blank">cv</a>-->
+       <!--/-->
+        <!-- <a class="info-link" href="mariaorciuoli_portfolio.pdf" target="_blank">portfolio</a>-->
+         <!--/-->
+         <br>
+         <br> 
+         <br>
+         <p style="font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; max-width: 65ch;">
+          Life is a bit like a dining table 
           You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
           You eat what’s offered, you imitate the motion, like birds learning the sky. 
           Being yourself might be a kind of possession, an exit wound, a disappearing act. 
-          You enter with great force to succeed in forgetting yourself. <br><br>
-          Freedom is perhaps the same, a frame that allows any variation, the shape left behind, the room you move through without breaking.
-         </p>
-  </header>
+          You enter with great force to succeed in forgetting yourself. 
+      
+          Freedom is perhaps the same,
+          a frame that allows any variation,
+          the shape left behind,
+          the room you move through without breaking.
+          </p>
+    </header>
 </body>
 </html>

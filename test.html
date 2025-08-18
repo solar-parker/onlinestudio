@@ -1,68 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maria Orciuoli</title>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>maria orciuoli's online studio</title>
+    
+     <style>
+      body {
+         /* background-color: #939a83; */
+         background-color: #e0cfc5; 
+      }
 
-  <!-- Preload the background image -->
-  <link rel="preload" as="image" href="mao_back.webp" />
+      .ne {
+        color: rgb(54, 52, 52);
+      }
 
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      background: url('mao_back.webp') no-repeat center center fixed;
-      background-size: cover;
-      color: rgb(54, 52, 52);
-    }
-
-    /* Match Page 2 header exactly */
-    header {
-      margin-left: 20px;
-      margin-bottom: 30px;
-    }
-
-    header h1 {
-      color: transparent;
-      font-weight: 300;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      font-size: 36px;
-      margin: 0;
-    }
-
-    .info-link {
-        /*                 padding: 6px;
-        background-color: #bec046; */
+      .info-link {
         text-decoration: none;
         border-bottom: 1px solid red;
         font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
         color: #0e0d0d;
-    }
+      }
     
-    p {
-    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-    max-width: 65ch;
-    line-height: 1.4;
-    }
+      p {
+        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+        max-width: 65ch;
+        line-height: 1.4;
+      }
 
-    p.intro {
+      p.intro {
         margin: 0px;
-    }
-    /* Custom link styling */
-  a {
-    color: black; /* Text color */
-    text-decoration: underline; /* Underline the link */
-    text-decoration-color: red; /* Set underline color to red */
-  }
-  </style>
+      }
+
+      /* Custom link styling */
+      a {
+        color: black;
+        text-decoration: underline;
+        text-decoration-color: red;
+      }
+
+      /* Wavy text effect */
+      .wavy-text {
+        display: inline-block;
+        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+        max-width: 65ch;
+        line-height: 1.4;
+      }
+
+      .wavy-text span {
+        display: inline-block;
+        animation: wave 2s infinite ease-in-out;
+      }
+
+      .wavy-text span:nth-child(odd) {
+        animation-delay: 0.1s;
+      }
+
+      .wavy-text span:nth-child(even) {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes wave {
+        0%, 100% { transform: translateY(0); }
+        25% { transform: translateY(-4px); }
+        50% { transform: translateY(0); }
+        75% { transform: translateY(4px); }
+      }
+     </style>
 </head>
 
 <body>
@@ -73,87 +77,22 @@
       <a class="info-link" href="about.html">about</a>
       /
       <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-    </header>
+         <br><br><br>
 
-  <canvas id="drawingCanvas"></canvas>
-
-  <a href="home.html">
-    <img src="mo_sign.png" alt="Signature" class="bottom-left-image" />
-  </a>
-
-  <script>
-    // Preload the high-resolution background image
-    const preloadImage = new Image();
-    preloadImage.src = 'mao_back.webp';
-    preloadImage.onload = () => {
-      document.body.style.backgroundImage = `url('mao_back.webp')`;
-    };
-
-    // Canvas drawing code
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    let isDrawing = false;
-    let isClick = true;
-
-    function startDrawing(x, y) {
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      isDrawing = true;
-      isClick = true;
-    }
-
-    function draw(x, y) {
-      if (!isDrawing) return;
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = 'red';
-      ctx.lineCap = 'round';
-      ctx.lineTo(x, y);
-      ctx.stroke();
-      isClick = false;
-    }
-
-    function stopDrawing() {
-      isDrawing = false;
-      ctx.closePath();
-    }
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    if (isMobile) {
-      canvas.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        startDrawing(touch.clientX, touch.clientY);
-      });
-      canvas.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        draw(touch.clientX, touch.clientY);
-        e.preventDefault();
-      });
-      canvas.addEventListener('touchend', () => {
-        if (isClick) clearCanvas();
-        stopDrawing();
-      });
-    } else {
-      canvas.addEventListener('mousemove', (e) => {
-        if (!isDrawing) startDrawing(e.clientX, e.clientY);
-        draw(e.clientX, e.clientY);
-      });
-      canvas.addEventListener('mousedown', (e) => {
-        startDrawing(e.clientX, e.clientY);
-        isClick = true;
-      });
-      canvas.addEventListener('mouseup', () => {
-        if (isClick) clearCanvas();
-        stopDrawing();
-      });
-      canvas.addEventListener('mouseout', stopDrawing);
-    }
-  </script>
+         <p class="wavy-text">
+          <!-- each letter wrapped in span for animation -->
+          <span>L</span><span>i</span><span>f</span><span>e</span><span> </span>
+          <span>i</span><span>s</span><span> </span>
+          <span>a</span><span> </span><span>b</span><span>i</span><span>t</span><span> </span>
+          <span>l</span><span>i</span><span>k</span><span>e</span><span> </span>
+          <span>a</span><span> </span><span>d</span><span>i</span><span>n</span><span>i</span><span>n</span><span>g</span><span> </span>
+          <span>t</span><span>a</span><span>b</span><span>l</span><span>e</span><br>
+          You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
+          You eat what’s offered, you imitate the motion, like birds learning the sky. 
+          Being yourself might be a kind of possession, an exit wound, a disappearing act. 
+          You enter with great force to succeed in forgetting yourself. <br><br>
+          Freedom is perhaps the same, a frame that allows any variation, the shape left behind, the room you move through without breaking.
+         </p>
+  </header>
 </body>
 </html>
