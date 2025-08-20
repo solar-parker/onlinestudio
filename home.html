@@ -3,105 +3,72 @@
 <head>
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title></title>
+     <title>maria orciuoli's online studio</title>
     
-    <style>
+     <style>
       body {
-         /* background-color: #939a83; */
          background-color: #e0cfc5; 
-    }
+      }
 
-    .ne {
-        color: rgb(54, 52, 52);
-    }
-
-    .info-link {
+      .info-link {
         text-decoration: none;
         border-bottom: 1px solid red;
         font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
         color: #0e0d0d;
-    }
-    
-    p {
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      max-width: 65ch;
-      line-height: 1.4;
-      padding-right: 10px;
-    }
-
-    p.intro {
-        margin: 0px;
-    }
-
-    a {
-      color: black;
-      text-decoration: underline;
-      text-decoration-color: red;
-    }
-
-    .image-container img {
-      max-width: 73ch;
-      width: 100%;
-      height: auto;
-    }
-
-    @media (max-width: 600px) {
-      .image-container img {
-        padding-right: 10px;
       }
-    }
+    
+      p {
+        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+        max-width: 65ch;
+        line-height: 1.4;
+      }
 
-    /* Responsive video embed */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
-      overflow: hidden;
-      max-width: 73ch;
-      margin-top: 20px;
-    }
+      a {
+        color: black;
+        text-decoration: underline;
+        text-decoration-color: red;
+      }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  </style>
-</head>
-<body>
-   <header style="margin-left: 20px; margin-bottom: 30px;">
-    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
-    <a class="info-link" href="home.html">home</a>
-    /
-    <a class="info-link" href="about.html">about</a>
-    /
-    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-    <br><br><br><br>
+      /* Vimeo responsive container */
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 ratio */
+        height: 0;
+        overflow: hidden;
+        max-width: 73ch;
+        margin: 20px 0;
+      }
 
-     <div class="image-container">
-      <img src="4everfeed_installation view_MariaOrciuoli_2024.webp" 
-           alt="Installation view of 4everfeed by Maria Orciuoli, 2024">
-    </div>
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
 
-    <!-- Vimeo embed -->
-    <div class="video-container">
-      <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49" 
-              frameborder="0" 
-              allow="autoplay; fullscreen; picture-in-picture" 
-              allowfullscreen>
-      </iframe>
-    </div>
+      /* Overlay to hide video graphics but leave controls visible */
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 40px); /* hide video but not bottom controls */
+        background: #e0cfc5; /* match background */
+        pointer-events: none; /* let clicks pass through to controls */
+      }
 
-    <p>
-      Maria Orciuoli’s work explores evolving forms of agency, resilience, and personal freedom within increasingly systematized realities.
-    </p>
-    <br><br>
-    <a class="info-link" href="https://docs.google.com/document/d/1n_g0ns4ht0_ohI_cftDlGG0ut8FJ8KcZ69vJAhSQpbI/edit?tab=t.0#heading=h.8dlrvck0tvff" target="_blank">cv</a>
-    /
-    <a class="info-link" href="https://drive.google.com/file/d/1AvKSNuyCpoJuHtF3nv_T9VmGZJJbzRtI/view?usp=sharing" target="_blank">portfolio</a>
-   </header>
-</body>
-</html>
+      /* Wavy text effect */
+      .wavy-text {
+        white-space: pre-line; 
+      }
+      .wavy-text span {
+        display: inline-block;
+        animation: wave 6s infinite ease-in-out; 
+      }
+      @keyframes wave {
+        0%, 100% { transform: translateY(0); }
+        25% { transform: translateY(-6px); }
+        50% { transform: translateY(0); }
+        75% { transform: trans
