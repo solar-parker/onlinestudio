@@ -10,13 +10,13 @@
       font-family: Helvetica, Arial, sans-serif;
     }
 
-    /* Responsive Vimeo container */
     .video-container {
       position: relative;
       padding-bottom: 56.25%; /* 16:9 ratio */
       height: 0;
+      overflow: hidden;
       max-width: 73ch;
-      margin: 40px 20px;
+      margin: 40px auto;
     }
 
     .video-container iframe {
@@ -26,17 +26,6 @@
       width: 100%;
       height: 100%;
       border: 0;
-    }
-
-    /* Overlay to hide video area but leave controls visible */
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: calc(100% - 45px); /* cover video, leave bottom 45px */
-      background: #e0cfc5;       /* match page background */
-      pointer-events: none;      /* allow clicks to reach controls */
     }
   </style>
 </head>
@@ -51,9 +40,7 @@
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
     </iframe>
-    <div class="video-overlay"></div>
   </div>
 
 </body>
 </html>
-
