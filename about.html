@@ -16,6 +16,8 @@
     }
 
     .info-link {
+        /*                 padding: 6px;
+        background-color: #bec046; */
         text-decoration: none;
         border-bottom: 1px solid red;
         font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
@@ -23,52 +25,34 @@
     }
     
     p {
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      max-width: 65ch;
-      line-height: 1.4;
-      padding-right: 10px;
+    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+    max-width: 65ch;
+    line-height: 1.4;
+    padding-right: 10px; /* Add right padding */
     }
 
     p.intro {
         margin: 0px;
     }
+    /* Custom link styling */
+  a {
+    color: black; /* Text color */
+    text-decoration: underline; /* Underline the link */
+    text-decoration-color: red; /* Set underline color to red */
+  }
+  /* Image container with responsive styles */
+  .image-container img {
+    max-width: 73ch;   /* Set a max width for the image */
+    width: 100%;       /* Make the image responsive */
+    height: auto;      /* Maintain aspect ratio */
+  }
 
-    a {
-      color: black;
-      text-decoration: underline;
-      text-decoration-color: red;
-    }
-
+  /* Add padding to the image on smaller screens */
+  @media (max-width: 600px) {
     .image-container img {
-      max-width: 73ch;
-      width: 100%;
-      height: auto;
+      padding-right: 10px; /* Add right padding on mobile */
     }
-
-    @media (max-width: 600px) {
-      .image-container img {
-        padding-right: 10px;
-      }
-    }
-
-    /* Responsive video embed */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
-      overflow: hidden;
-      max-width: 73ch;
-      margin-top: 20px;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+  }
   </style>
 </head>
 <body>
@@ -79,29 +63,31 @@
     <a class="info-link" href="about.html">about</a>
     /
     <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-    <br><br><br><br>
-
+    <!-- <a class="info-link" href="mariaorciuoli_portfolio.pdf" target="_blank">portfolio</a> -->
+    <!--<a class="info-link" href="random.html" target="_blank">online studio<span class="ne">↗</span></a>-->
+    <br>
+    <br> 
+    <br>
+    <br>
+     <!-- Image with responsive styling -->
      <div class="image-container">
       <img src="4everfeed_installation view_MariaOrciuoli_2024.webp" 
-           alt="Installation view of 4everfeed by Maria Orciuoli, 2024">
+           alt="Installation view of 4everfeed by Maria Orciuoli, 2024" 
+           style="max-width: 73ch; width: 100%; height: auto;">
     </div>
-
-    <!-- Vimeo embed -->
-    <div class="video-container">
-      <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49" 
-              frameborder="0" 
-              allow="autoplay; fullscreen; picture-in-picture" 
-              allowfullscreen>
-      </iframe>
-    </div>
-
-    <p>
+  <br>
+    <p style="font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; max-width: 65ch;">
       Maria Orciuoli’s work explores evolving forms of agency, resilience, and personal freedom within increasingly systematized realities.
     </p>
-    <br><br>
+    <br>
+    <br>
     <a class="info-link" href="https://docs.google.com/document/d/1n_g0ns4ht0_ohI_cftDlGG0ut8FJ8KcZ69vJAhSQpbI/edit?tab=t.0#heading=h.8dlrvck0tvff" target="_blank">cv</a>
     /
     <a class="info-link" href="https://drive.google.com/file/d/1AvKSNuyCpoJuHtF3nv_T9VmGZJJbzRtI/view?usp=sharing" target="_blank">portfolio</a>
-   </header>
-</body>
-</html>
+    <br>
+    <br>
+    <!-- />-->
+    <!--<a class="info-link" href="https://github.com/solar-parker" target="_blank">github<span class="ne">↗</span></a>>-->
+    </header>
+    </body>
+    </html>
