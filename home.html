@@ -3,65 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Audio-only Vimeo Player</title>
+  <title>maria orciuoli's online studio</title>
   <style>
     body {
       background-color: #e0cfc5;
       font-family: Helvetica, Arial, sans-serif;
-      padding: 20px;
     }
-    #player {
-      display: none; /* hide video */
+
+    /* Responsive Vimeo container */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      max-width: 73ch;
+      margin: 40px 20px;
     }
-    .controls {
-      margin-top: 20px;
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
-    button {
-      margin-right: 10px;
-      padding: 6px 12px;
-      border: 1px solid red;
-      background: transparent;
-      cursor: pointer;
-    }
-    input[type=range] {
-      width: 120px;
+
+    /* Overlay to hide video area but leave controls visible */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 45px); /* cover video, leave bottom 45px */
+      background: #e0cfc5;       /* match page background */
+      pointer-events: none;      /* allow clicks to reach controls */
     }
   </style>
 </head>
 <body>
 
-  <!-- Hidden Vimeo iframe -->
-  <div id="player"></div>
+  <h1 style="color: transparent; font-weight: 300; font-family: Helvetica, Arial, sans-serif; font-size: 36px; margin-left:20px;">maria orciuoli</h1>
 
-  <!-- Custom controls -->
-  <div class="controls">
-    <button id="play">Play</button>
-    <button id="pause">Pause</button>
-    <label>
-      Volume:
-      <input type="range" id="volume" min="0" max="1" step="0.05" value="1">
-    </label>
+  <!-- Vimeo embed -->
+  <div class="video-container">
+    <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+    <div class="video-overlay"></div>
   </div>
-
-  <script src="https://player.vimeo.com/api/player.js"></script>
-  <script>
-    const options = {
-      url: "https://vimeo.com/1111765602", 
-      autoplay: false
-    };
-
-    const iframe = document.createElement('iframe');
-    const playerDiv = document.getElementById('player');
-    playerDiv.appendChild(iframe);
-
-    const player = new Vimeo.Player(iframe, options);
-
-    document.getElementById("play").addEventListener("click", () => player.play());
-    document.getElementById("pause").addEventListener("click", () => player.pause());
-    document.getElementById("volume").addEventListener("input", e => {
-      player.setVolume(e.target.value);
-    });
-  </script>
 
 </body>
 </html>
+
