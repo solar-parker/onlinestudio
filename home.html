@@ -71,4 +71,51 @@
         0%, 100% { transform: translateY(0); }
         25% { transform: translateY(-6px); }
         50% { transform: translateY(0); }
-        75% { transform: trans
+        75% { transform: translateY(6px); }
+      }
+     </style>
+</head>
+
+<body>
+  <header style="margin-left: 20px; margin-bottom: 30px;">
+    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
+      <a class="info-link" href="home.html">home</a>
+      /
+      <a class="info-link" href="about.html">about</a>
+      /
+      <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+         <br><br><br>
+
+      <!-- Vimeo embed -->
+      <div class="video-container">
+        <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49&title=0&byline=0&portrait=0" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+        <div class="video-overlay"></div>
+      </div>
+
+      <p class="wavy-text" id="poem">
+          Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
+          You eat what’s offered, you imitate the motion, like birds learning the sky. 
+          Being yourself might be a kind of possession, an exit wound, a disappearing act. 
+          You enter with great force to succeed in forgetting yourself. 
+          Freedom is perhaps the same. A frame that allows any variation. The shape left behind. The room you move through without breaking.
+      </p>
+  </header>
+
+  <script>
+    // Wrap every character of the paragraph in spans and stagger delays
+    const poem = document.getElementById("poem");
+    const text = poem.innerText;
+    poem.innerHTML = text
+      .split("")
+      .map((char, i) => {
+        if (char === " ") return " "; 
+        return `<span style="animation-delay:${i * 0.05}s">${char}</span>`;
+      })
+      .join("");
+  </script>
+</body>
+</html>
