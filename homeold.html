@@ -15,6 +15,13 @@
       margin-bottom: 30px;
     }
 
+    .info-link {
+      text-decoration: none;
+      border-bottom: 1px solid red;
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+      color: #0e0d0d;
+    }
+
     p {
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       max-width: 65ch;
@@ -27,24 +34,13 @@
       text-decoration-color: red;
     }
 
-    /* CSS character-by-character wave for poem */
+    /* CSS character-by-character wave for paragraphs */
     .char-wave {
-      white-space: pre-line;
+      white-space: pre-line; /* respect line breaks in HTML */
     }
     .char-wave span {
       display: inline-block;
-      animation: wave 6s infinite ease-in-out;
-    }
-
-    /* CSS character-by-character wave for Fresh Air heading */
-    .css-wave {
-      display: inline-block;
-      color: rgb(4,2,14);
-      font-size: 2em;
-    }
-    .css-wave span {
-      display: inline-block;
-      animation: wave 3s infinite ease-in-out;
+      animation: wave 6s infinite ease-in-out; /* adjust speed here */
     }
 
     @keyframes wave {
@@ -53,12 +49,30 @@
       50% { transform: translateY(0); }
       75% { transform: translateY(6px); }
     }
+
+    /* SVG-waved heading */
+    .svg-wave {
+      color: rgb(4, 2, 14);
+      filter: url(#wavy);
+    }
   </style>
 </head>
 
 <body>
+  <!-- SVG filter for wavy h1 -->
+  <svg width="0" height="0">
+    <defs>
+      <filter id="wavy" filterUnits="userSpaceOnUse" x="0" y="0">
+        <feTurbulence id="wave-animation" numOctaves="1" seed="1" baseFrequency="0 0"></feTurbulence>
+        <feDisplacementMap scale="10" in="SourceGraphic"></feDisplacementMap>
+        <animate xlink:href="#wave-animation" attributeName="baseFrequency" dur="3s" 
+                 keyTimes="0;0.5;1" values="0.0 0.04;0.0 0.07;0.0 0.04" repeatCount="indefinite">
+        </animate>
+      </filter>
+    </defs>
+  </svg>
 
-  <!-- Poem -->
+  <!-- Poem with character-by-character CSS wave -->
   <p class="char-wave">
     Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
     You eat what’s offered, you imitate the motion, like birds learning the sky. 
@@ -68,39 +82,28 @@
   </p>
 
   <!-- Chat link -->
-  <p style="font-family: 'Courier New', Courier, monospace;">
-    Chat with<a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a>
-  </p>
+    <p style="font-family: 'Courier New', Courier, monospace;">Chat with<a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a></p>
 
-  <!-- Fresh Air heading -->
-  <h1 class="css-wave">Fresh Air</h1>
 
-  <!-- Paragraph under Fresh Air heading -->
-  <p style="font-family: 'Courier New', Courier, monospace;">
+  <!-- Container for Fresh Air heading and paragraph -->
+<div class="svg-wave" style="display: inline-block;">
+  <h1 style="display: inline;">Fresh Air</h1>
+  <p style="display: inline; font-family: 'Courier New', Courier, monospace; margin-left: 10px;">
     Literally, 6 minutes of <a href="freshair.html" style="color: rgb(9, 9, 9);">fresh air collection.</a>
   </p>
+</div>
 
   <!-- Wrap poem characters in spans for CSS wave -->
   <script>
     const poem = document.querySelector(".char-wave");
-    const textPoem = poem.innerText;
-    poem.innerHTML = textPoem
+    const text = poem.innerText;
+    poem.innerHTML = text
       .split("")
       .map((char, i) => {
         if (char === " ") return " ";
         return `<span style="animation-delay:${i * 0.05}s">${char}</span>`;
       })
       .join("");
-
-    // Wrap Fresh Air heading characters in spans for CSS wave
-    const heading = document.querySelector(".css-wave");
-    const textHeading = heading.textContent;
-    heading.innerHTML = textHeading
-      .split("")
-      .map(char => `<span>${char}</span>`)
-      .join("");
   </script>
-
 </body>
 </html>
-
