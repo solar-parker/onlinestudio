@@ -7,15 +7,23 @@
 
   <style>
     body {
-      background-color: #ffffff; /* white background */
+      background-color: #ffffff; /* keep white background */
       margin: 0;
       padding: 0;
+    }
+
+    header {
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-top: 30px;
+      margin-bottom: 30px;
     }
 
     p {
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       max-width: 65ch;
       line-height: 1.4;
+      padding-right: 10px; /* add right padding to match reference */
     }
 
     a {
@@ -42,9 +50,14 @@
       filter: url('#wavy');
     }
 
-    /* Red container section */
+    /* Container styling (Past-Post block) */
     div.container {
       background-color: #d62e2e;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      max-width: 65ch;
     }
 
     div.container p {
@@ -63,7 +76,7 @@
 </head>
 
 <body>
-  <header style="margin-left: 20px; margin-bottom: 30px;">
+  <header>
     <p class="poem-text" id="poem">
       Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
       You eat what’s offered, you imitate the motion, like birds learning the sky. 
@@ -71,29 +84,30 @@
       You enter with great force to succeed in forgetting yourself. 
       Freedom is perhaps the same. A frame that allows any variation. The shape left behind. The room you move through without breaking.
     </p>
-  </header>
 
-  <p style="font-family: 'Courier New', Courier, monospace;">
-    Chat with <a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a>
-  </p>
-
-  <h1 style="color: rgb(4, 2, 14);" class="wavy-text">Fresh Air</h1>
-  <p style="font-family: 'Courier New', Courier, monospace;">
-    Literally, 6 minutes of <a href="freshair.html" style="color: rgb(9, 9, 9);">fresh air collection.</a>
-  </p>
-
-  <a href="prglitch.html">
-    <img src="cooltext409317399597725.gif" 
-         alt="Funny animation GIF with text PR Glitch in flames" 
-         width="331" height="95">
-  </a>
-
-  <div class="container">
-    <p>
-      Past Post-Global Network - The 3AM Version. 
-      <a href="3amversion.html" style="color: rgb(215, 242, 39);">Click me!</a>
+    <p style="font-family: 'Courier New', Courier, monospace;">
+      Chat with <a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a>
     </p>
-  </div>
+
+    <h1 style="color: rgb(4, 2, 14);" class="wavy-text">Fresh Air</h1>
+    <p style="font-family: 'Courier New', Courier, monospace;">
+      Literally, 6 minutes of <a href="freshair.html" style="color: rgb(9, 9, 9);">fresh air collection.</a>
+    </p>
+
+    <a href="prglitch.html">
+      <img src="cooltext409317399597725.gif" 
+           alt="Funny animation GIF with text PR Glitch in flames" 
+           width="331" height="95"
+           style="max-width: 73ch; width: 100%; height: auto;">
+    </a>
+
+    <div class="container">
+      <p>
+        Past Post-Global Network - The 3AM Version. 
+        <a href="3amversion.html" style="color: rgb(215, 242, 39);">Click me!</a>
+      </p>
+    </div>
+  </header>
 
   <!-- SVG Filter for Wavy Text -->
   <svg width="0" height="0">
@@ -122,4 +136,5 @@
   </script>
 </body>
 </html>
+
 
