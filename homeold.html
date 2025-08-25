@@ -24,13 +24,8 @@
       text-decoration-color: red;
     }
 
-    /* Wavy text animation */
-    .wavy-text {
-      white-space: pre-line; /* respect line breaks */
-      filter: url('#wavy');  /* apply SVG filter */
-    }
-
-    .wavy-text span {
+    /* Poem animation */
+    .poem-text span {
       display: inline-block;
       animation: wave 6s infinite ease-in-out;
     }
@@ -40,6 +35,11 @@
       25% { transform: translateY(-6px); }
       50% { transform: translateY(0); }
       75% { transform: translateY(6px); }
+    }
+
+    /* Wavy text with SVG filter (for "Fresh Air") */
+    .wavy-text {
+      filter: url('#wavy');
     }
 
     /* Red container section */
@@ -64,7 +64,7 @@
 
 <body>
   <header style="margin-left: 20px; margin-bottom: 30px;">
-    <p class="wavy-text" id="poem">
+    <p class="poem-text" id="poem">
       Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
       You eat what’s offered, you imitate the motion, like birds learning the sky. 
       Being yourself might be a kind of possession, an exit wound, a disappearing act. 
@@ -109,16 +109,17 @@
   </svg>
 
   <script>
-    // Wrap every character of the poem in spans with staggered animation delays
+    // Wrap every character of the poem in spans and stagger delays
     const poem = document.getElementById("poem");
     const text = poem.innerText;
     poem.innerHTML = text
       .split("")
       .map((char, i) => {
         if (char === " ") return " "; // keep spaces
-        return `<span style="animation-delay:${i * 0.05}s">${char}</span>`;
+        return `<span style="font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; animation-delay:${i * 0.05}s">${char}</span>`;
       })
       .join("");
   </script>
 </body>
 </html>
+
