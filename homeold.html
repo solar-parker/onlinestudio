@@ -1,73 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>maria orciuoli's online studio</title>
-    
-     <style>
-      body {
-         background-color: #e0cfc5; 
-      }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>maria orciuoli's online studio</title>
 
-      .info-link {
-        text-decoration: none;
-        border-bottom: 1px solid red;
-        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-        color: #0e0d0d;
-      }
-    
-      p {
-        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-        max-width: 65ch;
-        line-height: 1.4;
-      }
+  <style>
+    body {
+      background-color: #ffffff; /* white background */
+      margin: 0;
+      padding: 0;
+    }
 
-      a {
-        color: black;
-        text-decoration: underline;
-        text-decoration-color: red;
-      }
+    p {
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+      max-width: 65ch;
+      line-height: 1.4;
+    }
 
-      /* Wavy text effect */
-      .wavy-text {
-  white-space: pre-line; /* respect line breaks in HTML */
-}
-      .wavy-text span {
-        display: inline-block;
-        animation: wave 6s infinite ease-in-out; /* slower duration */
-      }
+    a {
+      color: black;
+      text-decoration: underline;
+      text-decoration-color: red;
+    }
 
-      @keyframes wave {
-        0%, 100% { transform: translateY(0); }
-        25% { transform: translateY(-6px); }
-        50% { transform: translateY(0); }
-        75% { transform: translateY(6px); }
-      }
-     </style>
+    /* Wavy text animation */
+    .wavy-text {
+      white-space: pre-line; /* respect line breaks */
+      filter: url('#wavy');  /* apply SVG filter */
+    }
+
+    .wavy-text span {
+      display: inline-block;
+      animation: wave 6s infinite ease-in-out;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-6px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(6px); }
+    }
+
+    /* Red container section */
+    div.container {
+      background-color: #d62e2e;
+    }
+
+    div.container p {
+      text-align: left;
+      font-family: Georgia, serif;
+      font-size: 30px;
+      font-style: italic;
+      font-weight: normal;
+      text-transform: none;
+      color: #f4eeee;
+      background-color: #b180c2;
+      margin: 0;
+      padding: 10px;
+    }
+  </style>
 </head>
 
 <body>
   <header style="margin-left: 20px; margin-bottom: 30px;">
-    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
-      <a class="info-link" href="home.html">home</a>
-      /
-      <a class="info-link" href="about.html">about</a>
-      /
-      <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-         <br><br><br>
-
-      <p class="wavy-text" id="poem">
-          Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
-          You eat what’s offered, you imitate the motion, like birds learning the sky. 
-          Being yourself might be a kind of possession, an exit wound, a disappearing act. 
-          You enter with great force to succeed in forgetting yourself. 
-          Freedom is perhaps the same. A frame that allows any variation. The shape left behind. The room you move through without breaking.
-         </p>
+    <p class="wavy-text" id="poem">
+      Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
+      You eat what’s offered, you imitate the motion, like birds learning the sky. 
+      Being yourself might be a kind of possession, an exit wound, a disappearing act. 
+      You enter with great force to succeed in forgetting yourself. 
+      Freedom is perhaps the same. A frame that allows any variation. The shape left behind. The room you move through without breaking.
+    </p>
   </header>
 
+  <p style="font-family: 'Courier New', Courier, monospace;">
+    Chat with <a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a>
+  </p>
+
+  <h1 style="color: rgb(4, 2, 14);" class="wavy-text">Fresh Air</h1>
+  <p style="font-family: 'Courier New', Courier, monospace;">
+    Literally, 6 minutes of <a href="freshair.html" style="color: rgb(9, 9, 9);">fresh air collection.</a>
+  </p>
+
+  <a href="prglitch.html">
+    <img src="cooltext409317399597725.gif" 
+         alt="Funny animation GIF with text PR Glitch in flames" 
+         width="331" height="95">
+  </a>
+
+  <div class="container">
+    <p>
+      Past Post-Global Network - The 3AM Version. 
+      <a href="3amversion.html" style="color: rgb(215, 242, 39);">Click me!</a>
+    </p>
+  </div>
+
+  <!-- SVG Filter for Wavy Text -->
+  <svg width="0" height="0">
+    <defs>
+      <filter id="wavy" filterUnits="userSpaceOnUse" x="0" y="0">
+        <feTurbulence id="wave-animation" numOctaves="1" seed="1" baseFrequency="0 0"></feTurbulence>
+        <feDisplacementMap scale="10" in="SourceGraphic"></feDisplacementMap>
+        <animate xlink:href="#wave-animation" attributeName="baseFrequency" dur="3s"
+                 keyTimes="0;0.5;1" values="0.0 0.04;0.0 0.07;0.0 0.04"
+                 repeatCount="indefinite"></animate>
+      </filter>
+    </defs>
+  </svg>
+
   <script>
-    // Wrap every character of the paragraph in spans and stagger delays
+    // Wrap every character of the poem in spans with staggered animation delays
     const poem = document.getElementById("poem");
     const text = poem.innerText;
     poem.innerHTML = text
