@@ -10,6 +10,11 @@
       background-color: #ffffff; 
     }
 
+    p, h1, a {
+      margin-left: 20px;
+      margin-bottom: 30px;
+    }
+
     .info-link {
       text-decoration: none;
       border-bottom: 1px solid red;
@@ -45,18 +50,10 @@
       75% { transform: translateY(6px); }
     }
 
-    /* Margins for consistent spacing */
-    .spaced {
-      margin-left: 20px;
-      margin-bottom: 30px;
-    }
-
-    /* Optional: style for SVG-waved text */
+    /* SVG-waved heading */
     .svg-wave {
       color: rgb(4, 2, 14);
       filter: url(#wavy);
-      margin-left: 20px;
-      margin-bottom: 30px;
     }
   </style>
 </head>
@@ -75,13 +72,8 @@
     </defs>
   </svg>
 
-  <!-- Header with SVG-waved h1 -->
-  <header class="spaced">
-    <h1 class="svg-wave">Fresh Air</h1>
-  </header>
-
   <!-- Poem with character-by-character CSS wave -->
-  <p class="char-wave spaced" id="poem">
+  <p class="char-wave">
     Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
     You eat what’s offered, you imitate the motion, like birds learning the sky. 
     Being yourself might be a kind of possession, an exit wound, a disappearing act. 
@@ -90,13 +82,21 @@
   </p>
 
   <!-- Chat link -->
-  <p class="spaced" style="font-family: 'Courier New', Courier, monospace;">
+  <p style="font-family: 'Courier New', Courier, monospace;">
     Chat with <a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a>
   </p>
 
-  <!-- Wrap poem characters in spans for animation -->
+  <!-- Header with SVG-waved h1 -->
+  <h1 class="svg-wave">Fresh Air</h1>
+
+  <!-- Paragraph under Fresh Air -->
+  <p style="font-family: 'Courier New', Courier, monospace;">
+    Literally, 6 minutes of <a href="freshair.html" style="color: rgb(9, 9, 9);">fresh air collection.</a>
+  </p>
+
+  <!-- Wrap poem characters in spans for CSS wave -->
   <script>
-    const poem = document.getElementById("poem");
+    const poem = document.querySelector(".char-wave");
     const text = poem.innerText;
     poem.innerHTML = text
       .split("")
