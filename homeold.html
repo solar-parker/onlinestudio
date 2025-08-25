@@ -3,129 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-
+  <title>maria orciuoli's online studio</title>
   <style>
-    body {
-      background-color: #e0cfc5;
-      margin: 0; /* reset default margins */
+    .GeneratedMarquee {
+      font-family:'Courier New', Courier, monospace;
+      font-size: 3em;
+      font-style:italic;
+      line-height:1.5em;
+      color:#FF0033;
+      padding:1em;
     }
 
-    header, 
-    #poem, 
-    #fresh-air, 
-    #pr-glitch, 
-    #past-post {
-      margin-left: 20px;
-      margin-right: 20px;
-      margin-bottom: 30px;
+    /* Poem styling */
+    .wavy-text {
+      white-space: pre-line; /* keep line breaks */
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-    }
-
-    .info-link {
-      text-decoration: none;
-      border-bottom: 1px solid red;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      color: #0e0d0d;
-    }
-
-    p {
       max-width: 65ch;
       line-height: 1.4;
-      padding-right: 10px;
+      margin: 40px 20px; /* spacing from the rest */
     }
 
-    p.intro {
-      margin: 0px;
+    .wavy-text span {
+      display: inline-block;
+      animation: wave 6s infinite ease-in-out;
     }
 
-    a {
-      color: black;
-      text-decoration: underline;
-      text-decoration-color: red;
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-6px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(6px); }
     }
 
-    /* Image container */
-    .image-container img {
-      max-width: 73ch;
-      width: 100%;
-      height: auto;
+    /* Container styling from original */
+    div.container {
+      background-color: #d62e2e;
     }
-
-    @media (max-width: 600px) {
-      .image-container img {
-        padding-right: 10px;
-      }
-    }
-
-    /* PR Glitch emoji smaller */
-    #pr-glitch .emoji {
-      font-size: 0.9em;
+    div.container p {
+      text-align: left;
+      font-family: Georgia;
+      font-size: 30px;
+      font-style: italic;
+      font-weight: normal;
+      text-transform: none;
+      color: #f4eeee;
+      background-color: #b180c2;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">
-      maria orciuoli
-    </h1>
-    <a class="info-link" href="home.html">home</a> /
-    <a class="info-link" href="about.html">about</a> /
-    <a class="info-link" href="onlinestudio.html">online studio</a> /
-    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+  <p style="font-family: 'Courier New', Courier, monospace;">
+    Chat with <a href="https://www.personalityforge.com/chat/_alexxia"><b>Alessia_3K</b></a>
+  </p>
+  <br><br>
 
-    <br><br><br><br>
+  <!-- Fresh Air title -->
+  <style>.wavy-text-title {filter:url('#wavy')}</style>
+  <h1 style="color:rgb(4, 2, 14);" class="wavy-text-title">Fresh Air</h1>
+  <p style="font-family: 'Courier New', Courier, monospace;">
+    Literally, 6 minutes of <a href="freshair.html" style="color: rgb(9, 9, 9);">fresh air collection.</a>
+  </p>
+  <br><br>
 
-    <!-- Example image -->
-    <div class="image-container">
-      <img src="4everfeed_installation view_MariaOrciuoli_2024.webp" 
-           alt="Installation view of 4everfeed by Maria Orciuoli, Ars Electronica Festival, Linz, 2024">
-    </div>
+  <!-- PR Glitch gif -->
+  <a href="prglitch.html">
+    <img src="cooltext409317399597725.gif" alt=" Funny animation GIF with text PR Glitch in flames" width="280" height="80">
+  </a>
+  <br><br>
 
-    <br><br><br>
-
-    <a class="info-link" href="https://docs.google.com/document/d/..." target="_blank">cv</a> /
-    <a class="info-link" href="https://drive.google.com/file/d/..." target="_blank">portfolio</a>
-  </header>
-
-  <!-- Fresh Air -->
-  <div id="fresh-air">
-    <h2>Fresh Air</h2>
+  <!-- Container block -->
+  <div class="container">
+    <p>Past Post-Global Network - The 3AM Version. 
+      <a href="3amversion.html" style="color: rgb(215, 242, 39);">Click me!</a>
+    </p> 
   </div>
 
-  <!-- PR Glitch -->
-  <div id="pr-glitch">
-    <p>PR Glitch <span class="emoji">✨</span></p>
-  </div>
+  <!-- New animated poem -->
+  <p class="wavy-text" id="poem">
+    Life is a bit like a dining table. You sit, thinking you’re the guest, but the table’s been there longer than appetite. 
+    You eat what’s offered, you imitate the motion, like birds learning the sky. 
+    Being yourself might be a kind of possession, an exit wound, a disappearing act. 
+    You enter with great force to succeed in forgetting yourself. 
+    Freedom is perhaps the same. A frame that allows any variation. The shape left behind. The room you move through without breaking.
+  </p>
 
-  <!-- Past-Post -->
-  <div id="past-post">
-    <p>Past Post</p>
-  </div>
+  <!-- SVG wave filter for title only -->
+  <svg width="100%" height="100%" style="color:rgb(43, 0, 255);">
+    <defs>
+      <filter id="wavy" filterUnits="userSpaceOnUse" x="0" y="0">
+        <feTurbulence id="wave-animation" numOctaves="1" seed="1" baseFrequency="0 0"></feTurbulence>
+        <feDisplacementMap scale="10" in="SourceGraphic"></feDisplacementMap>
+      </filter>
+      <animate xlink:href="#wave-animation" attributeName="baseFrequency" dur="3s" keyTimes="0;0.5;1" values="0.0 0.04;0.0 0.07;0.0 0.04" repeatCount="indefinite"></animate>
+    </defs>
+  </svg>
 
-  <!-- Poem -->
-  <div id="poem">
-    <p>
-      your poem text here line by line  
-      continuing like this  
-      styled with margins same as header
-    </p>
-  </div>
-
+  <!-- Poem animation script -->
   <script>
-    // Animate poem text like original script
     const poem = document.getElementById("poem");
     const text = poem.innerText;
     poem.innerHTML = text
       .split("")
       .map((char, i) => {
-        if (char === " ") return " "; 
+        if (char === " ") return " ";
         return `<span style="animation-delay:${i * 0.05}s">${char}</span>`;
       })
       .join("");
   </script>
 </body>
 </html>
-
-
-
