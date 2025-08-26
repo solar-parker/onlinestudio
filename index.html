@@ -10,17 +10,29 @@
 
     <style>
         /* Reset default margin and padding */
-        body, html {
+        html, body {
             margin: 0;
             padding: 0;
             height: 100%;
+            min-height: 100%;
             font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-            background: url('mao_back.webp') no-repeat center center fixed;
-            background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgb(54, 52, 52); /* From .ne */
+            color: rgb(54, 52, 52);
+        }
+
+        /* Background via pseudo-element (fixes white strip on mobile) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('mao_back.webp') no-repeat center center;
+            background-size: cover;
+            z-index: -1; /* keep behind everything */
         }
 
         /* Header styling */
@@ -40,7 +52,7 @@
             margin: 0 0 10px 0;
         }
 
-        /* Menu links styling from Page 1 */
+        /* Menu links styling */
         .info-link {
             text-decoration: none;
             border-bottom: 1px solid red;
@@ -103,17 +115,18 @@
         // Preload the high-resolution background image
         const preloadImage = new Image();
         preloadImage.src = 'mao_back.webp';
-        preloadImage.onload = () => {
-            document.body.style.backgroundImage = `url('mao_back.webp')`;
-        };
 
         // Get the canvas and context
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
 
         // Set canvas size to match the window
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
         // Detect if the device is mobile
         const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -169,13 +182,12 @@
             });
         } else {
             // Desktop event listeners
-            canvas.addEventListener('mousemove', (e) => {
-                if (!isDrawing) startDrawing(e.clientX, e.clientY);
-                draw(e.clientX, e.clientY);
-            });
             canvas.addEventListener('mousedown', (e) => {
                 startDrawing(e.clientX, e.clientY);
                 isClick = true; // Reset click state on mousedown
+            });
+            canvas.addEventListener('mousemove', (e) => {
+                draw(e.clientX, e.clientY);
             });
             canvas.addEventListener('mouseup', () => {
                 if (isClick) clearCanvas(); // Clear canvas if it's a click
@@ -186,3 +198,4 @@
     </script>
 </body>
 </html>
+
