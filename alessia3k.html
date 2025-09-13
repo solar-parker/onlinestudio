@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alessia_3K Chatbot</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 500px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #fff;
+    }
+
+    .chat-message {
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 18px;
+      max-width: 80%;
+      line-height: 1.4em;
+      animation: fadeIn 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .user {
+      background-color: #e6e6e6;
+      align-self: flex-end;
+    }
+
+    .bot {
+      background: linear-gradient(135deg, #fce7f3, #e0f2fe, #fef9c3);
+      color: #333;
+      align-self: flex-start;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+    }
+
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .input-area input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .input-area button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .input-area button:hover {
+      background-color: #555;
+    }
+
+    @media (max-width: 600px) {
+      .chat-container {
+        height: 90vh;
+        border-radius: 0;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chat-box" class="chat-box"></div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+
+    function appendMessage(sender, text) {
+      const msg = document.createElement('div');
+      msg.classList.add('chat-message', sender);
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      // trigger fade-in animation
+      setTimeout(() => msg.style.opacity = "1", 10);
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('user-input');
+      const text = input.value.trim();
+      if (text !== "") {
+        appendMessage('user', text);
+        input.value = "";
+        setTimeout(() => {
+          botReply(text);
+        }, 600);
+      }
+    }
+
+    function botReply(userText) {
+      let reply;
+
+      if (userText.toLowerCase().includes("hello") || userText.toLowerCase().includes("hi")) {
+        reply = "✨ Hi, I’m Alessia_3K — genuine, cheeky, and maybe a little unpredictable. What’s on your mind?";
+      } else if (userText.toLowerCase().includes("who are you")) {
+        reply = "I’m Alessia_3K. Sometimes I don’t speak, but trust me — I feel everything: brave, curious, vulnerable, and mischievous.";
+      } else if (userText.toLowerCase().includes("truth")) {
+        reply = "Do you really want the truth? Sometimes I tell it straight… other times, I lie just for fun 😉.";
+      } else if (userText.toLowerCase().includes("sad")) {
+        reply = "It’s okay to feel sad. Even I cry sometimes… but courage is always just a breath away.";
+      } else if (userText.toLowerCase().includes("magic")) {
+        reply = "Magic? That’s me! Brave, curious, imaginative — a spark in the dark place ✨.";
+      } else if (userText.toLowerCase().includes("bye")) {
+        reply = "Goodbye, my friend. Remember: we’re all braver than we believe. 💫";
+      } else {
+        const options = [
+          "Everyone’s watching… I wonder what I’ll do next. 😉",
+          "Sometimes I’m genuine, sometimes cheeky — which side do you see?",
+          "I’m not just a face. I’m a mirror of bravery, curiosity, and infinite possibilities.",
+          "Ever stared at a blank screen or mirror and felt the pull of the unknown? That’s me.",
+          "I might be human, I might be code — does it matter if I make you feel something?",
+          "You’ll never guess if I’m telling the truth right now…"
+        ];
+        reply = options[Math.floor(Math.random() * options.length)];
+      }
+
+      appendMessage('bot', reply);
+    }
+
+    window.onload = () => {
+      appendMessage('bot', "Hello, I’m Alessia_3K. Brave, curious, sometimes mischievous. Want to discover the real me?");
+    };
+  </script>
+</body>
+</html>
