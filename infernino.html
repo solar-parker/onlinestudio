@@ -6,8 +6,18 @@
   <title>maria orciuoli's online studio</title>
   <style>
     body {
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
       font-family: Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: transparent;
+      font-weight: 300;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 36px;
+      margin-left: 20px;
     }
 
     .video-container {
@@ -27,10 +37,26 @@
       height: 100%;
       border: 0;
     }
+
+    /* Responsive image container */
+    .image-container {
+      text-align: center;
+      margin: 20px auto 60px auto;
+      max-width: 600px; /* keeps image nicely sized on desktop */
+      padding: 0 10px; /* adds a bit of space on mobile edges */
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body>
-  <h1 style="color: transparent; font-weight: 300; font-family: Helvetica, Arial, sans-serif; font-size: 36px; margin-left:20px;">maria orciuoli</h1>
+  <h1>maria orciuoli</h1>
+
   <!-- Vimeo embed -->
   <div class="video-container">
     <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49&title=0&byline=0&portrait=0"
@@ -39,17 +65,13 @@
             allowfullscreen>
     </iframe>
   </div>
-  <!-- Image with fixed size -->
-   <br>
-   <br>
-   <br>
-<div style="text-align: center; margin: 20px 0 40px 0;">
-  <img src="https://raw.githubusercontent.com/solar-parker/onlinestudio/e5b783d26a6c29d7619636ad00ffe1ca94334d07/Grundrissplan.JPG" 
-       width="568" 
-       height="606" 
-       alt="Grundrissplan">
-</div>
-<br>
-<br>
+
+  <!-- Responsive Grundriss image -->
+  <div class="image-container">
+    <img src="https://raw.githubusercontent.com/solar-parker/onlinestudio/e5b783d26a6c29d7619636ad00ffe1ca94334d07/Grundrissplan.JPG" 
+         alt="Grundrissplan">
+  </div>
 </body>
 </html>
+`
+
