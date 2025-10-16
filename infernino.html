@@ -26,7 +26,7 @@
       height: 0;
       overflow: hidden;
       max-width: 73ch;
-      margin: 40px auto;
+      margin: 60px auto 80px auto; /* added more space below video */
     }
 
     .video-container iframe {
@@ -38,12 +38,11 @@
       border: 0;
     }
 
-    /* Responsive image container */
     .image-container {
       text-align: center;
       margin: 20px auto 60px auto;
-      max-width: 600px; /* keeps image nicely sized on desktop */
-      padding: 0 10px; /* adds a bit of space on mobile edges */
+      max-width: 600px;
+      padding: 0 10px;
     }
 
     .image-container img {
@@ -51,13 +50,20 @@
       height: auto;
       display: block;
       margin: 0 auto;
+      transition: width 0.3s ease;
+    }
+
+    /* Slightly smaller image on mobile */
+    @media (max-width: 600px) {
+      .image-container img {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
   <h1>maria orciuoli</h1>
 
-  <!-- Vimeo embed -->
   <div class="video-container">
     <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49&title=0&byline=0&portrait=0"
             frameborder="0"
@@ -66,12 +72,12 @@
     </iframe>
   </div>
 
-  <!-- Responsive Grundriss image -->
   <div class="image-container">
     <img src="https://raw.githubusercontent.com/solar-parker/onlinestudio/e5b783d26a6c29d7619636ad00ffe1ca94334d07/Grundrissplan.JPG" 
          alt="Grundrissplan">
   </div>
 </body>
 </html>
-`
+
+
 
