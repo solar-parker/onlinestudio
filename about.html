@@ -1,95 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maria Orciuoli</title>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title></title>
+    
     <style>
-        body {
-            background-color: #e0cfc5;
-            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+         /* background-color: #939a83; */
+         background-color: #e0cfc5; 
+    }
 
-        .ne {
-            color: rgb(54, 52, 52);
-        }
+    .ne {
+        color: rgb(54, 52, 52);
+    }
 
-        .info-link {
-            text-decoration: none;
-            border-bottom: 1px solid red;
-            font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-            color: #0e0d0d;
-        }
+    .info-link {
+        /*                 padding: 6px;
+        background-color: #bec046; */
+        text-decoration: none;
+        border-bottom: 1px solid red;
+        font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+        color: #0e0d0d;
+    }
+    
+    p {
+    font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+    max-width: 65ch;
+    line-height: 1.4;
+    padding-right: 10px; /* Add right padding */
+    }
 
-        p {
-            max-width: 65ch;
-            line-height: 1.4;
-            padding-right: 10px;
-        }
+    p.intro {
+        margin: 0px;
+    }
+    /* Custom link styling */
+  a {
+    color: black; /* Text color */
+    text-decoration: underline; /* Underline the link */
+    text-decoration-color: red; /* Set underline color to red */
+  }
+  /* Image container with responsive styles */
+  .image-container img {
+    max-width: 73ch;   /* Set a max width for the image */
+    width: 100%;       /* Make the image responsive */
+    height: auto;      /* Maintain aspect ratio */
+  }
 
-        p.intro {
-            margin: 0;
-        }
-
-        a {
-            color: black;
-            text-decoration: underline;
-            text-decoration-color: red;
-        }
-
-        /* Image container for 4everfeed */
-        .image-container {
-            text-align: center;
-            margin: 40px auto; /* adds vertical spacing */
-        }
-
-        .image-container img {
-            max-width: 73ch; /* desktop max width */
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .image-container img {
-                max-width: 100%; /* image fits within mobile viewport */
-            }
-        }
-    </style>
+  /* Add padding to the image on smaller screens */
+  @media (max-width: 600px) {
+    .image-container img {
+      padding-right: 10px; /* Add right padding on mobile */
+    }
+  }
+  </style>
 </head>
 <body>
-    <header style="margin-left: 20px; margin-bottom: 30px;">
-        <h1 style="color: transparent; font-weight: 300; font-size: 36px;">maria orciuoli</h1>
-
-        <a class="info-link" href="home.html">home</a> /
-        <a class="info-link" href="about.html">about</a> /
-        <a class="info-link" href="onlinestudio.html">online studio</a> /
-        <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-
-        <br><br><br><br>
-
-        <!-- 4everfeed image -->
-        <div class="image-container">
-            <img src="4everfeed_installation view_MariaOrciuoli_2024.webp" 
-                 alt="Installation view of 4everfeed by Maria Orciuoli, Ars Electronica Festival, Linz, 2024">
-        </div>
-
-        <br><br>
-
-        <a class="info-link" href="https://docs.google.com/document/d/1n_g0ns4ht0_ohI_cftDlGG0ut8FJ8KcZ69vJAhSQpbI/edit?tab=t.0#heading=h.8dlrvck0tvff" target="_blank">cv</a> /
-        <a class="info-link" href="https://drive.google.com/file/d/1AvKSNuyCpoJuHtF3nv_T9VmGZJJbzRtI/view?usp=sharing" target="_blank">portfolio</a>
-
-        <br><br>
+   <header style="margin-left: 20px; margin-bottom: 30px;">
+    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
+    <a class="info-link" href="home.html">home</a>
+    /
+    <a class="info-link" href="about.html">about</a>
+    /
+    <a class="info-link" href="onlinestudio.html">online studio</a>
+    /
+    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+    <!-- <a class="info-link" href="mariaorciuoli_portfolio.pdf" target="_blank">portfolio</a> -->
+    <!--<a class="info-link" href="random.html" target="_blank">online studio<span class="ne">↗</span></a>-->
+    <br>
+    <br> 
+    <br>
+    <br>
+     <!-- Image with responsive styling -->
+     <div class="image-container">
+      <img src="4everfeed_installation view_MariaOrciuoli_2024.webp" 
+           alt="Installation view of 4everfeed by Maria Orciuoli, Ars Electronica Festival, Linz, 2024" 
+           style="max-width: 73ch; width: 100%; height: auto;">
+    </div>
+    <br>
+    <br>
+    <a class="info-link" href="https://docs.google.com/document/d/1n_g0ns4ht0_ohI_cftDlGG0ut8FJ8KcZ69vJAhSQpbI/edit?tab=t.0#heading=h.8dlrvck0tvff" target="_blank">cv</a>
+    /
+    <a class="info-link" href="https://drive.google.com/file/d/1AvKSNuyCpoJuHtF3nv_T9VmGZJJbzRtI/view?usp=sharing" target="_blank">portfolio</a>
+    <br>
+    <br>
+    <!-- />-->
+    <!-- <a class="info-link" href="https://github.com/solar-parker" target="_blank">github<span class="ne">↗</span></a> />-->
     </header>
-</body>
-</html>
+    </body>
+    </html>
