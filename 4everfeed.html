@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centered Vimeo Autoplay</title>
+  <style>
+    /* Page reset */
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg,#0b0f12 0%, #111418 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#fff;
+    }
+
+    /* Stage keeps the layout predictable */
+    .stage{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      box-sizing:border-box;
+    }
+
+    /* Desktop: constrained, centered player keeping 16:9 */
+    .video-wrapper{
+      width:min(1200px, 100%);
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 14px;
+      overflow:hidden;
+      box-shadow: 0 20px 50px rgba(2,6,12,0.7);
+      display:block;
+    }
+
+    .video-wrapper iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    /* Mobile: make the iframe truly fullscreen */
+    @media (max-width: 768px){
+      body{padding:0}
+      .stage{padding:0}
+      .video-wrapper{
+        position:fixed;
+        inset:0; /* top:0; right:0; bottom:0; left:0; */
+        width:100vw;
+        height:100vh;
+        aspect-ratio: auto;
+        border-radius:0;
+        box-shadow:none;
+      }
+      /* prevent the body from scrolling behind the full-screen video */
+      html,body{height:100%;overflow:hidden}
+    }
+
+    /* Small accessibility hint text (optional) */
+    .hint{
+      position:fixed;
+      left:16px;bottom:16px;font-size:13px;opacity:0.7;
+      user-select:none;pointer-events:none
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <!--
+      Note: the src includes autoplay=1 and muted=1 to maximise autoplay compatibility across browsers.
+      If you want the video to play with audio immediately you'll likely need to remove muted=1 and rely
+      on the user to interact (click) because most browsers block unmuted autoplay.
+    -->
+
+    <div class="video-wrapper">
+      <iframe
+        id="vimeoPlayer"
+        title="vimeo-player"
+        src="https://player.vimeo.com/video/1011810655?h=af32039b8d&autoplay=1&muted=1&playsinline=1"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
+        allowfullscreen
+        ></iframe>
+    </div>
+  </div>
+
+  <div class="hint">Autoplay is muted to ensure reliable playback. Tap the video to toggle sound if desired.</div>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    // Try to ensure playback (muted) using the Vimeo Player API. This gives a better chance to autoplay
+    // across browsers and lets us unmute if the user interacts.
+    (function(){
+      const iframe = document.getElementById('vimeoPlayer');
+      if(!iframe) return;
+
+      // Create the player instance
+      const player = new Vimeo.Player(iframe);
+
+      // Ensure muted then try to play. Some browsers still deny autoplay — we catch that.
+      player.setVolume(0).catch(()=>{});
+      player.play().catch((err)=>{
+        // If autoplay is prevented, log the error (or show a UI prompt). We don't interrupt the user.
+        console.warn('Autoplay prevented or failed:', err.name || err);
+      });
+
+      // Toggle mute/unmute on first user tap/click
+      let userInteracted = false;
+      function onFirstUserInteraction(){
+        if(userInteracted) return;
+        userInteracted = true;
+        // toggle volume on user interaction: if currently muted -> unmute to 100%
+        player.getVolume().then(v => {
+          if(v === 0){
+            player.setVolume(1).catch(()=>{});
+          }
+        }).catch(()=>{});
+      }
+
+      ['click','touchstart','keydown'].forEach(ev => {
+        window.addEventListener(ev, onFirstUserInteraction, { once: true, passive: true });
+      });
+
+    })();
+  </script>
+</body>
+</html>
