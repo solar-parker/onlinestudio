@@ -10,12 +10,11 @@
       margin: 0;
       background: #000;
     }
+
     body {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color: #fff;
     }
 
     .stage {
@@ -24,7 +23,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-sizing: border-box;
     }
 
     .video-wrapper {
@@ -32,7 +30,7 @@
       aspect-ratio: 16/9;
       background: #000;
       overflow: hidden;
-      position: relative;
+      display: block;
     }
 
     .video-wrapper iframe {
@@ -42,27 +40,6 @@
       display: block;
     }
 
-    /* Unmute button styling */
-    .unmute-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      backdrop-filter: blur(6px);
-      transition: background 0.3s;
-      z-index: 20;
-    }
-
-    .unmute-btn:hover {
-      background: rgba(255, 255, 255, 0.35);
-    }
-
     @media (max-width: 768px) {
       .video-wrapper {
         position: fixed;
@@ -70,15 +47,19 @@
         width: 100vw;
         height: 100vh;
         aspect-ratio: auto;
+        border-radius: 0;
       }
-      html, body { height: 100%; overflow: hidden; }
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
     }
   </style>
 </head>
 <body>
   <div class="stage">
     <div class="video-wrapper">
-      <button class="unmute-btn" id="unmuteBtn">Unmute</button>
+      <!-- ✅ Only Vimeo’s native player & unmute button -->
       <iframe
         id="vimeoPlayer"
         title="vimeo-player"
@@ -89,29 +70,6 @@
     </div>
   </div>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
-  <script>
-    (function() {
-      const iframe = document.getElementById('vimeoPlayer');
-      const unmuteBtn = document.getElementById('unmuteBtn');
-      if (!iframe) return;
-
-      const player = new Vimeo.Player(iframe);
-      player.setVolume(0).catch(() => {});
-      player.play().catch((err) => {
-        console.warn('Autoplay prevented or failed:', err.name || err);
-      });
-
-      // Unmute when user clicks the button
-      unmuteBtn.addEventListener('click', async () => {
-        try {
-          await player.setVolume(1);
-          unmuteBtn.style.display = 'none'; // Hide button after unmuting
-        } catch (err) {
-          console.error('Could not unmute:', err);
-        }
-      });
-    })();
-  </script>
+  <!-- ❌ Removed custom “autoplay muted” hint and custom unmute logic -->
 </body>
 </html>
