@@ -5,29 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maria Orciuoli</title>
 
-  <!-- Preload the background image -->
   <link rel="preload" as="image" href="mao_back.webp" />
 
   <style>
-    body, html {
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       background: url('mao_back.webp') no-repeat center center fixed;
       background-size: cover;
-      display: flex;
-      align-items: flex-start; /* Align top, to match Page 2 */
-      justify-content: flex-start;
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       color: rgb(54, 52, 52);
     }
 
+    /* ⚙️ Header — identical to Page 2 */
     header {
-      margin-left: 20px;
-      margin-top: 20px; /* same top spacing as Page 2 */
-      margin-bottom: 30px;
-      position: relative; /* no fixed positioning */
+      position: fixed;
+      top: 36px; /* Matches Page 2 vertical offset */
+      left: 20px; /* Same horizontal offset */
       z-index: 10;
+      margin: 0;
     }
 
     header h1 {
@@ -35,28 +32,31 @@
       font-weight: 300;
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       font-size: 36px;
-      margin: 0 0 10px 0;
+      margin: 0 0 10px 0; /* identical bottom spacing */
     }
 
+    /* identical link style from Page 2 */
     .info-link {
       text-decoration: none;
       border-bottom: 1px solid red;
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       color: #0e0d0d;
-      margin-right: 8px;
       font-size: 16px;
+      line-height: 1.4;
     }
 
     .info-link:hover {
       color: red;
     }
 
+    /* match default anchor behavior from Page 2 */
     a {
       color: black;
       text-decoration: underline;
       text-decoration-color: red;
     }
 
+    /* canvas behavior */
     canvas {
       position: absolute;
       top: 0;
@@ -65,36 +65,47 @@
       height: 100%;
       z-index: 1;
     }
+
+    @media (max-width: 768px) {
+      html, body { overflow: hidden; }
+    }
   </style>
 </head>
+
 <body>
+  <!-- ✅ Header visually identical to Page 2 -->
   <header>
     <h1>maria orciuoli</h1>
     <a class="info-link" href="home.html">home</a> /
     <a class="info-link" href="about.html">about</a> /
     <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-    <br><br><br><br>
   </header>
 
-  <!-- Canvas for drawing -->
+  <!-- Canvas -->
   <canvas id="drawingCanvas"></canvas>
 
   <script>
-    // Preload the high-resolution background image
+    // Preload image
     const preloadImage = new Image();
     preloadImage.src = 'mao_back.webp';
     preloadImage.onload = () => {
       document.body.style.backgroundImage = `url('mao_back.webp')`;
     };
 
+    // Canvas setup
     const canvas = document.getElementById('drawingCanvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
     let isDrawing = false;
     let isClick = true;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
     function startDrawing(x, y) {
       ctx.beginPath();
@@ -123,13 +134,13 @@
     }
 
     if (isMobile) {
-      canvas.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        startDrawing(touch.clientX, touch.clientY);
+      canvas.addEventListener('touchstart', e => {
+        const t = e.touches[0];
+        startDrawing(t.clientX, t.clientY);
       });
-      canvas.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        draw(touch.clientX, touch.clientY);
+      canvas.addEventListener('touchmove', e => {
+        const t = e.touches[0];
+        draw(t.clientX, t.clientY);
         e.preventDefault();
       });
       canvas.addEventListener('touchend', () => {
@@ -137,11 +148,8 @@
         stopDrawing();
       });
     } else {
-      canvas.addEventListener('mousedown', (e) => {
-        startDrawing(e.clientX, e.clientY);
-        isClick = true;
-      });
-      canvas.addEventListener('mousemove', (e) => draw(e.clientX, e.clientY));
+      canvas.addEventListener('mousedown', e => startDrawing(e.clientX, e.clientY));
+      canvas.addEventListener('mousemove', e => draw(e.clientX, e.clientY));
       canvas.addEventListener('mouseup', () => {
         if (isClick) clearCanvas();
         stopDrawing();
@@ -151,4 +159,5 @@
   </script>
 </body>
 </html>
+
 
