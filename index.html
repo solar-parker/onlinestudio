@@ -5,31 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
 
-    <!-- Preload the background image -->
     <link rel="preload" as="image" href="mao_back.webp" />
 
     <style>
-        /* Reset default margin and padding */
-        body, html {
+        html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
             background: url('mao_back.webp') no-repeat center center fixed;
             background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgb(54, 52, 52); /* From .ne */
+            color: rgb(54, 52, 52);
         }
 
-        /* Header styling */
+        /* ✅ Header positioned identically to Page 2 */
         header {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            margin-bottom: 30px;
-            z-index: 10; /* So it stays above the canvas */
+            top: 36px;       /* Matches Page 2 visual offset */
+            left: 20px;      /* Same left margin as Page 2 */
+            z-index: 10;
         }
 
         header h1 {
@@ -40,38 +34,24 @@
             margin: 0 0 10px 0;
         }
 
-        /* Menu links styling from Page 1 */
+        /* ✅ Identical link styling */
         .info-link {
             text-decoration: none;
             border-bottom: 1px solid red;
             font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
             color: #0e0d0d;
-
         }
 
         .info-link:hover {
             color: red;
         }
 
-        /* Custom link styling for <a> */
         a {
             color: black;
             text-decoration: underline;
             text-decoration-color: red;
         }
 
-        /* Bottom-left image styling */
-        .bottom-left-image {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            max-width: 150px;
-            width: 100%;
-            height: auto;
-            z-index: 10;
-        }
-
-        /* Canvas styling */
         canvas {
             position: absolute;
             top: 0;
@@ -82,109 +62,86 @@
         }
     </style>
 </head>
+
 <body>
-   <header style="margin-left: 15px; margin-bottom: 30px;">
-    <h1 style="color: transparent; font-weight: 300; font-family: 'Helvetica Light', Helvetica, Arial, sans-serif; font-size: 36px;">maria orciuoli</h1>
-       
-    <a class="info-link" href="home.html">home</a> /
-    <a class="info-link" href="about.html">about</a> /
-    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
+    <!-- ✅ Header visually aligned with Page 2 -->
+    <header>
+        <h1>maria orciuoli</h1>
+        <a class="info-link" href="home.html">home</a> /
+        <a class="info-link" href="about.html">about</a> /
+        <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
     </header>
 
     <!-- Canvas for drawing -->
     <canvas id="drawingCanvas"></canvas>
 
-    <!-- Bottom-left image -->
-    <!--
-<a href="home.html">
-    <img src="mo_sign.png" alt="" class="bottom-left-image" />
-</a>
--->
-
     <script>
-        // Preload the high-resolution background image
+        // Preload the background
         const preloadImage = new Image();
         preloadImage.src = 'mao_back.webp';
         preloadImage.onload = () => {
             document.body.style.backgroundImage = `url('mao_back.webp')`;
         };
 
-        // Get the canvas and context
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
-
-        // Set canvas size to match the window
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // Detect if the device is mobile
+        // Drawing behavior identical to your original version (auto on mousemove)
         const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-        // Drawing state
         let isDrawing = false;
-        let isClick = true; // Detect if it's a click (no movement)
+        let isClick = true;
 
-        // Start drawing
         function startDrawing(x, y) {
-            ctx.beginPath(); // Start a new path
-            ctx.moveTo(x, y); // Move to the touch/mouse position
+            ctx.beginPath();
+            ctx.moveTo(x, y);
             isDrawing = true;
-            isClick = true; // Assume it's a click until movement is detected
+            isClick = true;
         }
 
-        // Draw continuously
         function draw(x, y) {
-            if (!isDrawing) return; // Only draw if drawing is active
-            ctx.lineWidth = 5; // Set line thickness
-            ctx.strokeStyle = 'red'; // Set line color
-            ctx.lineCap = 'round'; // Make line ends rounded
-            ctx.lineTo(x, y); // Draw a line to the touch/mouse position
-            ctx.stroke(); // Render the line
-            isClick = false; // Mark it as not a click if there's movement
+            if (!isDrawing) return;
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = 'red';
+            ctx.lineCap = 'round';
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            isClick = false;
         }
 
-        // Stop drawing
         function stopDrawing() {
             isDrawing = false;
-            ctx.closePath(); // End the current path
+            ctx.closePath();
         }
 
-        // Clear the canvas
         function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
         if (isMobile) {
-            // Mobile event listeners
             canvas.addEventListener('touchstart', (e) => {
-                const touch = e.touches[0];
-                startDrawing(touch.clientX, touch.clientY);
+                const t = e.touches[0];
+                startDrawing(t.clientX, t.clientY);
             });
             canvas.addEventListener('touchmove', (e) => {
-                const touch = e.touches[0];
-                draw(touch.clientX, touch.clientY);
-                e.preventDefault(); // Prevent scrolling
+                const t = e.touches[0];
+                draw(t.clientX, t.clientY);
+                e.preventDefault();
             });
             canvas.addEventListener('touchend', () => {
-                if (isClick) clearCanvas(); // Clear canvas if it's a tap
+                if (isClick) clearCanvas();
                 stopDrawing();
             });
         } else {
-            // Desktop event listeners
+            // ✏️ Keeps the "draw on mouse move" behavior without needing to click
             canvas.addEventListener('mousemove', (e) => {
                 if (!isDrawing) startDrawing(e.clientX, e.clientY);
                 draw(e.clientX, e.clientY);
-            });
-            canvas.addEventListener('mousedown', (e) => {
-                startDrawing(e.clientX, e.clientY);
-                isClick = true; // Reset click state on mousedown
-            });
-            canvas.addEventListener('mouseup', () => {
-                if (isClick) clearCanvas(); // Clear canvas if it's a click
-                stopDrawing();
             });
             canvas.addEventListener('mouseout', stopDrawing);
         }
     </script>
 </body>
 </html>
+
