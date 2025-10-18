@@ -9,20 +9,17 @@
       height: 100%;
       margin: 0;
       background: #000;
+      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
+      color: #fff;
     }
 
     body {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-    }
-
-    .stage {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
+      padding: 20px;
     }
 
     .video-wrapper {
@@ -40,36 +37,48 @@
       display: block;
     }
 
+    /* 📐 Inverted triangle text styling */
+    .onion-text {
+      max-width: min(1200px, 100%);
+      margin-top: 30px;
+      font-size: 16px;
+      line-height: 1.4;
+      color: #f5f5f5;
+      text-align: justify;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+      -webkit-mask-image: radial-gradient(ellipse at top center, black 60%, transparent 100%);
+      mask-image: radial-gradient(ellipse at top center, black 60%, transparent 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      padding: 20px;
+    }
+
     @media (max-width: 768px) {
-      .video-wrapper {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100vh;
-        aspect-ratio: auto;
-        border-radius: 0;
+      body {
+        padding: 10px;
       }
-      html, body {
-        height: 100%;
-        overflow: hidden;
+      .onion-text {
+        font-size: 15px;
+        padding: 15px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="stage">
-    <div class="video-wrapper">
-      <!-- ✅ Only Vimeo’s native player & unmute button -->
-      <iframe
-        id="vimeoPlayer"
-        title="vimeo-player"
-        src="https://player.vimeo.com/video/1011810655?h=af32039b8d&autoplay=1&muted=1&playsinline=1"
-        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
-        allowfullscreen
-      ></iframe>
-    </div>
+  <div class="video-wrapper">
+    <iframe
+      id="vimeoPlayer"
+      title="vimeo-player"
+      src="https://player.vimeo.com/video/1011810655?h=af32039b8d&autoplay=1&muted=1&playsinline=1"
+      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
+      allowfullscreen
+    ></iframe>
   </div>
 
-  <!-- ❌ Removed custom “autoplay muted” hint and custom unmute logic -->
+  <p class="onion-text">
+    “Why, you are simply an onion, and how I’m going to peel you, and tears and entreaties won’t help in the least.
+    This rough skin here, with the hardened patch, is the fur-trapping hunter.
+    The next layer looks unhealthy, streaked with darkened matter.
+    What an incredible number of layers! Don’t we get to the heart of it soon?”
+  </p>
 </body>
 </html>
