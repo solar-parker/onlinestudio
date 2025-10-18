@@ -17,7 +17,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
       padding: 20px;
     }
@@ -28,6 +27,7 @@
       background: #000;
       overflow: hidden;
       display: block;
+      margin-bottom: 3cm; /* spacing below video */
     }
 
     .video-wrapper iframe {
@@ -37,29 +37,37 @@
       display: block;
     }
 
-    /* 📐 Inverted triangle text styling */
+    /* Inverted triangle layout using progressively narrower line containers */
     .onion-text {
-      max-width: min(1200px, 100%);
-      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3em;
+      color: #f5f5f5;
       font-size: 16px;
       line-height: 1.4;
-      color: #f5f5f5;
-      text-align: justify;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
-      -webkit-mask-image: radial-gradient(ellipse at top center, black 60%, transparent 100%);
-      mask-image: radial-gradient(ellipse at top center, black 60%, transparent 100%);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      padding: 20px;
     }
 
+    .onion-text span {
+      display: block;
+      max-width: 100ch; /* max width of top line */
+      text-align: center;
+    }
+    .onion-text span:nth-child(2) { max-width: 90ch; }
+    .onion-text span:nth-child(3) { max-width: 80ch; }
+    .onion-text span:nth-child(4) { max-width: 70ch; }
+    .onion-text span:nth-child(5) { max-width: 60ch; }
+    .onion-text span:nth-child(6) { max-width: 50ch; }
+
     @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-      .onion-text {
-        font-size: 15px;
-        padding: 15px;
-      }
+      .video-wrapper { margin-bottom: 2rem; }
+      .onion-text { font-size: 15px; }
+      .onion-text span:nth-child(1) { max-width: 90ch; }
+      .onion-text span:nth-child(2) { max-width: 80ch; }
+      .onion-text span:nth-child(3) { max-width: 70ch; }
+      .onion-text span:nth-child(4) { max-width: 60ch; }
+      .onion-text span:nth-child(5) { max-width: 50ch; }
+      .onion-text span:nth-child(6) { max-width: 40ch; }
     }
   </style>
 </head>
@@ -74,11 +82,13 @@
     ></iframe>
   </div>
 
-  <p class="onion-text">
-    “Why, you are simply an onion, and how I’m going to peel you, and tears and entreaties won’t help in the least.
-    This rough skin here, with the hardened patch, is the fur-trapping hunter.
-    The next layer looks unhealthy, streaked with darkened matter.
-    What an incredible number of layers! Don’t we get to the heart of it soon?”
-  </p>
+  <div class="onion-text">
+    <span>“Why, you are simply an onion, and how I’m going to peel you,</span>
+    <span>and tears and entreaties won’t help in the least.</span>
+    <span>This rough skin here, with the hardened patch, is the fur-trapping hunter.</span>
+    <span>The next layer looks unhealthy, streaked with darkened matter.</span>
+    <span>What an incredible number of layers!</span>
+    <span>Don’t we get to the heart of it soon?”</span>
+  </div>
 </body>
 </html>
