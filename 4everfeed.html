@@ -9,16 +9,20 @@
       height: 100%;
       margin: 0;
       background: #000;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      color: #fff;
     }
 
     body {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 20px;
+      justify-content: center;
+    }
+
+    .stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .video-wrapper {
@@ -27,7 +31,6 @@
       background: #000;
       overflow: hidden;
       display: block;
-      margin-bottom: 3cm; /* spacing below video */
     }
 
     .video-wrapper iframe {
@@ -37,59 +40,36 @@
       display: block;
     }
 
-    /* Inverted triangle layout using progressively narrower line containers */
-    .onion-text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3em;
-      color: #f5f5f5;
-      font-size: 16px;
-      line-height: 1.4;
-    }
-
-    .onion-text span {
-      display: block;
-      max-width: 100ch; /* max width of top line */
-      text-align: center;
-    }
-    .onion-text span:nth-child(2) { max-width: 90ch; }
-    .onion-text span:nth-child(3) { max-width: 80ch; }
-    .onion-text span:nth-child(4) { max-width: 70ch; }
-    .onion-text span:nth-child(5) { max-width: 60ch; }
-    .onion-text span:nth-child(6) { max-width: 50ch; }
-
     @media (max-width: 768px) {
-      .video-wrapper { margin-bottom: 2rem; }
-      .onion-text { font-size: 15px; }
-      .onion-text span:nth-child(1) { max-width: 90ch; }
-      .onion-text span:nth-child(2) { max-width: 80ch; }
-      .onion-text span:nth-child(3) { max-width: 70ch; }
-      .onion-text span:nth-child(4) { max-width: 60ch; }
-      .onion-text span:nth-child(5) { max-width: 50ch; }
-      .onion-text span:nth-child(6) { max-width: 40ch; }
+      .video-wrapper {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+        border-radius: 0;
+      }
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="video-wrapper">
-    <iframe
-      id="vimeoPlayer"
-      title="vimeo-player"
-      src="https://player.vimeo.com/video/1011810655?h=af32039b8d&autoplay=1&muted=1&playsinline=1"
-      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
-      allowfullscreen
-    ></iframe>
+  <div class="stage">
+    <div class="video-wrapper">
+      <!-- ✅ Only Vimeo’s native player & unmute button -->
+      <iframe
+        id="vimeoPlayer"
+        title="vimeo-player"
+        src="https://player.vimeo.com/video/1011810655?h=af32039b8d&autoplay=1&muted=1&playsinline=1"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
+        allowfullscreen
+      ></iframe>
+    </div>
   </div>
-<br><br><br>
-  <div class="onion-text">
-    <span>“Why, you are simply an onion, and how I’m going to peel you,</span>
-    <span>and tears and entreaties won’t help in the least.</span>
-    <span>This rough skin here, with the hardened patch, is the fur-trapping hunter.</span>
-    <span>The next layer looks unhealthy, streaked with darkened matter.</span>
-    <span>What an incredible number of layers!</span>
-    <span>Don’t we get to the heart of it soon?”</span>
-  </div>
-  <br><br><br>
+
+  <!-- ❌ Removed custom “autoplay muted” hint and custom unmute logic -->
 </body>
 </html>
