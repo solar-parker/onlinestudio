@@ -32,7 +32,7 @@
       aspect-ratio: 16/9;
       background: #000;
       overflow: hidden;
-      display: block;
+      position: relative;
     }
 
     .video-wrapper iframe {
@@ -42,34 +42,43 @@
       display: block;
     }
 
+    /* Unmute button styling */
+    .unmute-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      backdrop-filter: blur(6px);
+      transition: background 0.3s;
+      z-index: 20;
+    }
+
+    .unmute-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
     @media (max-width: 768px) {
-      body { padding: 0; }
-      .stage { padding: 0; }
       .video-wrapper {
         position: fixed;
         inset: 0;
         width: 100vw;
         height: 100vh;
         aspect-ratio: auto;
-        border-radius: 0;
       }
       html, body { height: 100%; overflow: hidden; }
-    }
-
-    .hint {
-      position: fixed;
-      left: 16px;
-      bottom: 16px;
-      font-size: 13px;
-      opacity: 0.7;
-      user-select: none;
-      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div class="stage">
     <div class="video-wrapper">
+      <button class="unmute-btn" id="unmuteBtn">Unmute</button>
       <iframe
         id="vimeoPlayer"
         title="vimeo-player"
@@ -80,12 +89,11 @@
     </div>
   </div>
 
-  <div class="hint">Autoplay is muted to ensure reliable playback. Tap the video to toggle sound if desired.</div>
-
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
     (function() {
       const iframe = document.getElementById('vimeoPlayer');
+      const unmuteBtn = document.getElementById('unmuteBtn');
       if (!iframe) return;
 
       const player = new Vimeo.Player(iframe);
@@ -94,19 +102,14 @@
         console.warn('Autoplay prevented or failed:', err.name || err);
       });
 
-      let userInteracted = false;
-      function onFirstUserInteraction() {
-        if (userInteracted) return;
-        userInteracted = true;
-        player.getVolume().then(v => {
-          if (v === 0) {
-            player.setVolume(1).catch(() => {});
-          }
-        }).catch(() => {});
-      }
-
-      ['click', 'touchstart', 'keydown'].forEach(ev => {
-        window.addEventListener(ev, onFirstUserInteraction, { once: true, passive: true });
+      // Unmute when user clicks the button
+      unmuteBtn.addEventListener('click', async () => {
+        try {
+          await player.setVolume(1);
+          unmuteBtn.style.display = 'none'; // Hide button after unmuting
+        } catch (err) {
+          console.error('Could not unmute:', err);
+        }
       });
     })();
   </script>
