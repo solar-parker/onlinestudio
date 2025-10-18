@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title></title>
 
-  <!-- Preload the background image -->
   <link rel="preload" as="image" href="mao_back.webp" />
 
   <style>
@@ -17,17 +16,14 @@
       background: url('mao_back.webp') no-repeat center center fixed;
       background-size: cover;
       color: rgb(54, 52, 52);
-      display: block; /* removed flex so header matches Page 2 */
+      display: block;
     }
 
-    /* Header aligned to Page 2 */
     header {
       position: fixed;
       top: 36px;
       left: 20px;
       z-index: 10;
-      margin: 0;
-      padding: 0;
     }
 
     header h1 {
@@ -43,18 +39,10 @@
       border-bottom: 1px solid red;
       font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
       color: #0e0d0d;
-      font-size: 16px;
-      line-height: 1.4;
     }
 
     .info-link:hover {
       color: red;
-    }
-
-    a {
-      color: black;
-      text-decoration: underline;
-      text-decoration-color: red;
     }
 
     canvas {
@@ -79,7 +67,6 @@
   <canvas id="drawingCanvas"></canvas>
 
   <script>
-    // Preload background
     const preloadImage = new Image();
     preloadImage.src = 'mao_back.webp';
     preloadImage.onload = () => {
@@ -89,7 +76,6 @@
     const canvas = document.getElementById('drawingCanvas');
     const ctx = canvas.getContext('2d');
 
-    // Resize canvas to window
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -127,7 +113,6 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // ✅ identical behavior to your original code:
     if (isMobile) {
       canvas.addEventListener('touchstart', (e) => {
         const touch = e.touches[0];
@@ -143,19 +128,25 @@
         stopDrawing();
       });
     } else {
+      // ✳️ This restores your original "free draw on move" behavior:
+      canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) startDrawing(e.clientX, e.clientY);
+        draw(e.clientX, e.clientY);
+      });
+
       canvas.addEventListener('mousedown', (e) => {
         startDrawing(e.clientX, e.clientY);
         isClick = true;
       });
-      canvas.addEventListener('mousemove', (e) => {
-        if (isDrawing) draw(e.clientX, e.clientY);
-      });
+
       canvas.addEventListener('mouseup', () => {
         if (isClick) clearCanvas();
         stopDrawing();
       });
+
       canvas.addEventListener('mouseout', stopDrawing);
     }
   </script>
 </body>
 </html>
+
