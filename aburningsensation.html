@@ -26,7 +26,7 @@
       height: 0;
       overflow: hidden;
       max-width: 73ch;
-      margin: 60px auto 80px auto; /* space below video */
+      margin: 60px auto 80px auto; /* added more space below video */
     }
 
     .video-container iframe {
@@ -53,6 +53,7 @@
       transition: width 0.3s ease;
     }
 
+    /* Slightly smaller image on mobile */
     @media (max-width: 600px) {
       .image-container img {
         width: 90%;
@@ -64,25 +65,16 @@
   <h1>maria orciuoli</h1>
 
   <div class="video-container">
-    <iframe 
-      src="https://player.vimeo.com/video/1111765602?h=e9932e0a49&autoplay=1&loop=1&autopause=0&title=0&byline=0&portrait=0"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-      allowfullscreen
-      title="infernino">
+    <iframe src="https://player.vimeo.com/video/1111765602?h=e9932e0a49&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
     </iframe>
   </div>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
-
   <div class="image-container">
-    <img 
-      src="https://raw.githubusercontent.com/solar-parker/onlinestudio/e5b783d26a6c29d7619636ad00ffe1ca94334d07/Grundrissplan.JPG" 
-      alt="Grundrissplan">
+    <img src="https://raw.githubusercontent.com/solar-parker/onlinestudio/e5b783d26a6c29d7619636ad00ffe1ca94334d07/Grundrissplan.JPG" 
+         alt="Grundrissplan">
   </div>
 </body>
 </html>
-
-
-
-
