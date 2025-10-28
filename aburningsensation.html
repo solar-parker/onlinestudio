@@ -8,8 +8,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      background: #ffffff; /* white background instead of black */
-      overflow: hidden;
+      background: #000;
     }
 
     body {
@@ -24,34 +23,35 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ffffff;
     }
 
-    /* Responsive video box that keeps aspect ratio and shows full video */
     .video-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 800px; /* adjust max width if desired */
-      aspect-ratio: 9 / 16; /* portrait aspect ratio */
-      background: #ffffff;
+      width: min(1200px, 100%);
+      aspect-ratio: 16/9;
+      background: #000;
       overflow: hidden;
+      display: block;
     }
 
     .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      border: none;
-      background-color: #ffffff; /* replaces black Vimeo background */
+      border: 0;
+      display: block;
     }
 
     @media (max-width: 768px) {
       .video-wrapper {
+        position: fixed;
+        inset: 0;
         width: 100vw;
         height: 100vh;
         aspect-ratio: auto;
+        border-radius: 0;
+      }
+      html, body {
+        height: 100%;
+        overflow: hidden;
       }
     }
   </style>
@@ -62,16 +62,15 @@
       <iframe
         id="vimeoPlayer"
         title="vimeo-player"
-        src="https://player.vimeo.com/video/1131286750?h=9d2913cd7d&autoplay=1&loop=1&autopause=0&title=0&byline=0&portrait=0"
+        src="https://player.vimeo.com/video/1131381473?h=800cb8f58b&autoplay=1&muted=1&playsinline=1&loop=1"
         allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
         allowfullscreen
       ></iframe>
     </div>
   </div>
-
-  <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
+
 
 
 
