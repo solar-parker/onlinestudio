@@ -8,7 +8,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      background: #fff; /* changed from black to white */
+      background: #fff; /* page background white */
     }
 
     body {
@@ -28,7 +28,7 @@
     .video-wrapper {
       width: min(1200px, 100%);
       aspect-ratio: 16/9;
-      background: #fff; /* changed from black to white */
+      background: #fff; /* wrapper background white */
       overflow: hidden;
       display: block;
     }
@@ -38,6 +38,7 @@
       height: 100%;
       border: 0;
       display: block;
+      object-fit: cover; /* ensures video fully fills iframe without gaps */
     }
 
     @media (max-width: 768px) {
@@ -46,7 +47,7 @@
         inset: 0;
         width: 100vw;
         height: 100vh;
-        aspect-ratio: auto;
+        aspect-ratio: unset; /* remove aspect-ratio to avoid fractional pixel gaps */
         border-radius: 0;
       }
       html, body {
@@ -70,4 +71,5 @@
   </div>
 </body>
 </html>
+
 
