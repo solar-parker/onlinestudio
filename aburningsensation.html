@@ -1,91 +1,75 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title></title>
   <style>
-    body {
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
+      background: #000;
     }
 
-    h1 {
-      color: transparent;
-      font-weight: 300;
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 36px;
-      margin-left: 20px;
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
+    .stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrapper {
+      width: min(1200px, 100%);
+      aspect-ratio: 16/9;
+      background: #000;
       overflow: hidden;
-      max-width: 73ch;
-      margin: 60px auto 80px auto; /* added more space below video */
+      display: block;
     }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .video-wrapper iframe {
       width: 100%;
       height: 100%;
       border: 0;
-    }
-
-    .image-container {
-      text-align: center;
-      margin: 20px auto 60px auto;
-      max-width: 600px;
-      padding: 0 10px;
-    }
-
-    .image-container img {
-      width: 100%;
-      height: auto;
       display: block;
-      margin: 0 auto;
-      transition: width 0.3s ease;
     }
 
-    /* Slightly smaller image on mobile */
-    @media (max-width: 600px) {
-      .image-container img {
-        width: 90%;
+    @media (max-width: 768px) {
+      .video-wrapper {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+        border-radius: 0;
+      }
+      html, body {
+        height: 100%;
+        overflow: hidden;
       }
     }
   </style>
 </head>
 <body>
-  <h1>maria orciuoli</h1>
-
-  <div class="video-container">
-    <iframe
-      src="https://player.vimeo.com/video/1131286750?h=9d2913cd7d&autoplay=1&loop=1&autopause=0&title=0&byline=0&portrait=0"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen
-      title="A Burning Sensation [From Feeling to Language]">
-    </iframe>
+  <div class="stage">
+    <div class="video-wrapper">
+     
+      <iframe
+        id="vimeoPlayer"
+        title="vimeo-player"
+        src="https://player.vimeo.com/video/1131286750?h=9d2913cd7d&autoplay=1&muted=1&playsinline=1&loop=1"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer"
+        allowfullscreen
+      ></iframe>
+    </div>
   </div>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
-
-  <div class="image-container">
-    <img 
-      src="https://github.com/solar-parker/onlinestudio/blob/14a821e3045de934ae1030ec44a66795baa3befa/a%20bunirng%20sensation%2002.png" 
-      alt="A burninng sensation image 02">
-  </div>
-  <div class="image-container">
-    <img 
-      src="https://github.com/solar-parker/onlinestudio/blob/14a821e3045de934ae1030ec44a66795baa3befa/a%20burning%20sensation%2001.png" 
-      alt="A burninng sensation image 02">
-  </div>
 </body>
 </html>
+
