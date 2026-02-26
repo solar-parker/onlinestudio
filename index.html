@@ -3,152 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>maria orciuoli </title>
-  <meta name="description" content="Maria Orciuoli is an Italian artist working with installation, performance, and video.">
-  
-
-  <link rel="preload" as="image" href="mao_back.webp" />
+  <title>Maria Orciuoli</title>
+  <meta name="description" content="Maria Orciuoli is an Italian artist working with installation, performance, and moving image.">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      background: url('mao_back.webp') no-repeat center center fixed;
-      background-size: cover;
-      color: rgb(54, 52, 52);
-      display: block;
+      background: white;
+      font-family: Helvetica, Arial, sans-serif;
+      color: #111;
     }
 
-    header {
-      position: fixed;
-      top: 36px;
-      left: 20px;
-      z-index: 10;
-    }
-
-    header h1 {
-      color: transparent;
-      font-weight: 300;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      font-size: 36px;
-      margin: 0 0 10px 0;
-    }
-
-    .info-link {
-      text-decoration: none;
-      border-bottom: 1px solid red;
-      font-family: 'Helvetica Light', Helvetica, Arial, sans-serif;
-      color: #0e0d0d;
-    }
-
-    .info-link:hover {
-      color: red;
-    }
-
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+    .container {
       height: 100%;
-      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 400;
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .links {
+      margin-top: 40px;
+    }
+
+    .links a {
       display: block;
+      margin: 8px 0;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .links a:hover {
+      opacity: 0.5;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>maria orciuoli</h1>
-    <a class="info-link" href="index.html">home</a> /
-    <a class="info-link" href="about.html">about</a> /
-    <a class="info-link" href="mailto:maria.orciuoli@gmail.com" target="_blank">contact</a>
-  </header>
+  <div class="container">
+    <h1>MARIA ORCIUOLI</h1>
 
-  <canvas id="drawingCanvas"></canvas>
-
-  <script>
-    const preloadImage = new Image();
-    preloadImage.src = 'mao_back.webp';
-    preloadImage.onload = () => {
-      document.body.style.backgroundImage = `url('mao_back.webp')`;
-    };
-
-    const canvas = document.getElementById('drawingCanvas');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    let isDrawing = false;
-    let isClick = true;
-
-    function startDrawing(x, y) {
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      isDrawing = true;
-      isClick = true;
-    }
-
-    function draw(x, y) {
-      if (!isDrawing) return;
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = 'red';
-      ctx.lineCap = 'round';
-      ctx.lineTo(x, y);
-      ctx.stroke();
-      isClick = false;
-    }
-
-    function stopDrawing() {
-      isDrawing = false;
-      ctx.closePath();
-    }
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    if (isMobile) {
-      canvas.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        startDrawing(touch.clientX, touch.clientY);
-      });
-      canvas.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        draw(touch.clientX, touch.clientY);
-        e.preventDefault();
-      });
-      canvas.addEventListener('touchend', () => {
-        if (isClick) clearCanvas();
-        stopDrawing();
-      });
-    } else {
-      // ✳️ This restores your original "free draw on move" behavior:
-      canvas.addEventListener('mousemove', (e) => {
-        if (!isDrawing) startDrawing(e.clientX, e.clientY);
-        draw(e.clientX, e.clientY);
-      });
-
-      canvas.addEventListener('mousedown', (e) => {
-        startDrawing(e.clientX, e.clientY);
-        isClick = true;
-      });
-
-      canvas.addEventListener('mouseup', () => {
-        if (isClick) clearCanvas();
-        stopDrawing();
-      });
-
-      canvas.addEventListener('mouseout', stopDrawing);
-    }
-  </script>
+    <div class="links">
+      <a href="portfolio.pdf">Portfolio</a>
+      <a href="mailto:maria.orciuoli@gmail.com">Contact</a>
+    </div>
+  </div>
 </body>
 </html>
-
