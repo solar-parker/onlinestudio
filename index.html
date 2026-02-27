@@ -1,21 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>MARIA ORCIUOLI</title>
-  <meta name="description" content="Maria Orciuoli is an Italian artist working with installation, performance, and video.">
+  <meta name="description" content="Maria Orciuoli is an Italian artist working with installation, performance, and moving image.">
+
+  <!-- Optional favicon (add favicon.png in the same folder as index.html) -->
+   <!--<link rel="icon" type="image/png" href="favicon.png">-->
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: white;
+      background: #ffffff;
+      color: #111111;
       font-family: Helvetica, Arial, sans-serif;
-      color: #111;
     }
 
+    /* Desktop / default: top-left anchored */
     .anchor {
       position: absolute;
       top: 60px;
@@ -25,20 +31,49 @@
     h1 {
       margin: 0 0 40px 0;
       font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 1px;
+      font-weight: 500;       /* strong but not vulgar */
+      letter-spacing: 2px;    /* plaque-like */
     }
 
     .links a {
       display: block;
       margin-bottom: 12px;
       text-decoration: none;
-      color: #111;
+      color: inherit;
       font-size: 16px;
     }
 
     .links a:hover {
       opacity: 0.4;
+    }
+
+    /* Mobile: centered + black field (Imhof-like logic, not imitation) */
+    @media (max-width: 768px) {
+      body {
+        background: #000000;
+        color: #ffffff;
+      }
+
+      .anchor {
+        position: static;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 34px;
+        margin: 0 0 36px 0;
+        letter-spacing: 2px;
+      }
+
+      .links a {
+        font-size: 18px;
+        margin-bottom: 14px;
+      }
     }
   </style>
 </head>
@@ -47,7 +82,8 @@
   <div class="anchor">
     <h1>MARIA ORCIUOLI</h1>
     <div class="links">
-       <!--<a href="portfolio.pdf">2025-2026 works</a>/>-->
+      <!-- Put your PDF in the same folder and name it portfolio.pdf -->
+     <!--<a href="portfolio.pdf">2025-2026 works</a>/>-->
       <a href="mailto:maria.orciuoli@gmail.com">contact</a>
     </div>
   </div>
